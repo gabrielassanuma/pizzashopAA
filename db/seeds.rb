@@ -32,5 +32,3 @@ end
 puts "Users created"
 
 puts "Creating Products"
-pizzas_flavour = ["Peperoni", "Veggie", "Supreme", "Supreme Plus", "Hawaiian", "Spicy", "Sausage",
-"Bacon", "Extra Cheese", ]

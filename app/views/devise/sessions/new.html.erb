@@ -1,24 +1,24 @@
 <div class= "container bg-white text-dark mx-auto">
-  <div class = "border border-dark p-3 mb-3">
-  <h2>Sign-in</h2>
+ <div class= "border border-dark p-3 mb-3">
+    <h2>Welcome to pizzashopAA</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: false,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" } %>
-      <%= f.input :password,
-                  required: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    </div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Log in", class: "btn btn-outline-secondary my-1" %>
-    </div>
-  <% end %>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "btn btn-outline-secondary my-1" %>
+      </div>
+    <% end %>
 
-  <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class= "container bg-white text-dark mx-auto">
   <div class = "border border-dark p-3 mb-3">
-  <h2>PizzaShop Registration new user</h2>
+  <h2>Sign-in</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
     <div class="form-inputs">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Log in" %>
+      <%= f.button :submit, "Log in", class: "btn btn-outline-secondary my-1" %>
     </div>
   <% end %>
 

@@ -1,5 +1,6 @@
 <div class= "container bg-white text-dark mx-auto">
   <div class = "border border-dark p-3 mb-3">
+   <h2>Register new User</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
       <%= f.error_notification %>
@@ -16,6 +17,10 @@
         <%= f.input :password_confirmation,
                     required: true,
                     input_html: { autocomplete: "new-password" } %>
+        <%= f.input :phone_number,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "phone-number" } %>
         <%= f.input :username,
                     required: false,
                     autofocus: true,
@@ -35,7 +40,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Sign up" %>
+        <%= f.button :submit, "Register", class: "btn btn-outline-secondary my-1"  %>
       </div>
     <% end %>
 

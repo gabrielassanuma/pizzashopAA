@@ -22,7 +22,7 @@ puts "Creating users"
     email: Faker::Internet.email,
     password: password,
     password_confirmation: password,
-    name: Faker::Name.name_with_middle,
+    username: Faker::Name.name_with_middle,
     phone_number: Faker::Number.number(digits: 9),
     street_name: Faker::Address.street_name,
     house_number: rand(1..1000)

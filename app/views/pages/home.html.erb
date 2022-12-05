@@ -1,4 +1,8 @@
 <div class="container">
   <h1>PizzashopAA</h1>
+  <%if signed_in? %>
+  <h1>Logged in</h1>
+  <%else  %>
   <%= link_to "Enter pizzashopAA",  user_session_path, class: "btn btn-outline-secondary my-1" %>
+  <% end %>
 </div>

@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_115540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "cart_id"
+    t.integer "quantity"
     t.index ["cart_id"], name: "index_order_products_on_cart_id"
     t.index ["order_id"], name: "index_order_products_on_order_id"
     t.index ["product_id"], name: "index_order_products_on_product_id"

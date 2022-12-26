@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root 'products#index'
   get 'carts/:id', to: "carts#show", as: "cart"
   delete 'carts/:id', to: "carts#destroy"
-  post 'line_items/:id/add', to: "line_items#add_quantity", as: "line_item_add"
-  post 'line_items/:id/reduce', to: "line_items#reduce_quantity", as: "line_item_reduce"
-  post 'line_items', to: "line_items#create"
-  get 'line_items/:id', to: "line_items#show", as: "line_item"
-  delete 'line_items/:id', to: "line_items#destroy"
+  post 'order_products/:id/add', to: "order_products#add_quantity", as: "order_product_add"
+  post 'order_products/:id/reduce', to: "order_products#reduce_quantity", as: "order_product_reduce"
+  post 'order_products', to: "order_products#create"
+  get 'order_products/:id', to: "order_products#show", as: "order_product"
+  delete 'order_products/:id', to: "order_products#destroy"
   resources :products
   resources :orders
 end

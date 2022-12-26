@@ -37,8 +37,8 @@ products = ["Peperoni", "Cheese", "Extra Cheese", "Hawaiian", "Supreme", "Veggie
             "Ice Cream", "Cheese Cake", "Mousse"]
 15.times do |index|
   product = Product.new(
-    product_name: products[index],
-    product_description: Faker::Lorem.sentence(word_count: 10),
+    name: products[index],
+    description: Faker::Lorem.sentence(word_count: 10),
     price: rand(1..8)
   )
   product.save!

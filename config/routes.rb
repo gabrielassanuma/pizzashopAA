@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'products#index'
   get 'carts/:id', to: "carts#show", as: "cart"
   delete 'carts/:id', to: "carts#destroy"

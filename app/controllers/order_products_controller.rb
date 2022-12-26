@@ -13,6 +13,28 @@ class OrderProductsController < ApplicationController
     @order_product.save
     redirect_to cart_path(current_cart)
   end
+
+  def destroy
+    @order_product = OrderProduct.find(params[:id])
+    @order_product.destroy
+    redirect_to cart_path(@current_cart)
+  end  
+
+  def add_quantity
+    @rder_product = OrderProduct.find(params[:id])
+    @order_product.quantity += 1
+    @order_product.save
+    redirect_to cart_path(@current_cart)
+  end
+  
+  def reduce_quantity
+    @rder_product = OrderProduct.find(params[:id])
+    if @order_product.quantity > 1
+      @order_product.quantity -= 1
+    end
+    @order_product.save
+    redirect_to cart_path(@current_cart)
+  end
     
   private
   

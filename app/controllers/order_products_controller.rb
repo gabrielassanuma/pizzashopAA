@@ -12,13 +12,7 @@ class OrderProductsController < ApplicationController
     end
     @order_product.save
     redirect_to cart_path(current_cart)
-  end
-
-  def destroy
-    @order_product = OrderProduct.find(params[:id])
-    @order_product.destroy
-    redirect_to cart_path(@current_cart)
-  end  
+  end 
 
   def add_quantity
     @order_product = OrderProduct.find(params[:id])
@@ -35,6 +29,12 @@ class OrderProductsController < ApplicationController
     @order_product.save
     redirect_to cart_path(@current_cart)
   end
+
+  def destroy
+    @order_product = OrderProduct.find(params[:id])
+    @order_product.destroy
+    redirect_to cart_path(@current_cart)
+  end 
     
   private
   

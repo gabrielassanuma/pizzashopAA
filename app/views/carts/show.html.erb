@@ -9,7 +9,7 @@
           <%= button_to "Reduce one", order_product_reduce_path(:id => order_product), method: :post %>
         </li>
         <li>
-          <%= button_to "Remove item", order_product_path(order_product), data: { turbo_method: "delete" } %>
+          <%= link_to "Remove item", order_product_path(order_product), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%>
         </li>
       </ul>
     <% end %>

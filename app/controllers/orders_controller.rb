@@ -13,17 +13,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new
-    order.user_id = current_user
-    order.order_status = "new_order"
-    @current_cart.order_products.each do |item|
-      @order.order_products << item
-      item.cart_id = nil
+    @order = Order.new
+    @order.user_id = current_user.id
+    @order.order_status = "new_order"
+    @order.total_price = @current_cart.sub_total
+    if @order.save
+      @current_cart.order_products.each do |item|
+        item.order_id = @order.id
+        item.save
+      end
+      raise
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
     end
-    order.save
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
-    redirect_to root_path
   end
   
 end

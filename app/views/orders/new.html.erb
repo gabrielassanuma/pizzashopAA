@@ -1,0 +1,14 @@
+<div class= "container">
+  <h1>Confirm your details</h1>
+  <%= @user.username %> <br>
+  <%= @user.phone_number %> <br>
+  <%= @user.street_name %> <br>
+  <%= @user.house_number %> <br>
+  <%= @user.additional_info %> <br>
+
+  <%= form_for(@order) do |f| %>
+
+      <%= f.submit %>
+  
+  <% end %>
+</div>

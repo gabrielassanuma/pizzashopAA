@@ -5,11 +5,11 @@
       <li>Item: <%= order_product.product.name %>/ Price: <%= number_to_currency(order_product.product.price) %>/ Quantity: <%= order_product.quantity %>/ Total Price: <%= number_to_currency(order_product.total_price) %>
       <ul>
         <li>
-          <%= link_to "Add one", order_product_add_path(:id => order_product), method: :post %>
-          <%= link_to "Reduce one", order_product_reduce_path(:id => order_product), method: :post %>
+          <%= button_to "Add one", order_product_add_path(:id => order_product), method: :post %>
+          <%= button_to "Reduce one", order_product_reduce_path(:id => order_product), method: :post %>
         </li>
         <li>
-          <%= link_to "Remove item", order_product_path(order_product), data: { turbo_method: "delete" } %>
+          <%= button_to "Remove item", order_product_path(order_product), data: { turbo_method: "delete" } %>
         </li>
       </ul>
     <% end %>

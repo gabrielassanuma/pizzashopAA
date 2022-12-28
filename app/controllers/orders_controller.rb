@@ -13,17 +13,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.user_id = current_user.id
-    @order.order_status = "new_order"
-    @order.total_price = @current_cart.sub_total
+    @order = Order.new(user_id: current_user.id, order_status: "new_order", total_price: @current_cart.sub_total)
     if @order.save
       @current_cart.order_products.each do |item|
-        item.order_id = @order.id
-        item.save
+        item.update(order_id: @order.id)
       end
-      raise
-      redirect_to root_path
+      @current_cart.destroy
+      session[:cart_id] = nil
+      redirect_to root_path, notice: "Order was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

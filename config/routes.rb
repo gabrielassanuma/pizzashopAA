@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   delete 'order_products/:id', to: "order_products#destroy"
   resources :products
   resources :orders
+  get 'track', to: "pages#track", as: "track"
 end

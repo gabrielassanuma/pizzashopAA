@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @user = current_user  
     @order = Order.new
   end
 
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
       end
       @current_cart.destroy
       session[:cart_id] = nil
-      redirect_to root_path, notice: "Order was successfully created."
+      redirect_to track_path notice: "Order was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

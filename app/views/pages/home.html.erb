@@ -1,17 +1,28 @@
 <%if user_signed_in?%>
 <div class="container">
-  <h2>All Products</h2>
-
-  <% @products.each do |product| %>
-  <p>Name: <%= product.name %> <br> Unit price of <%= number_to_currency(product.price) %></p>
-      <%= button_to "Add #{product.name} to cart", order_products_path(:product_id => product.id) %>
-  <% end%>
-
-  <%= link_to "New product", new_product_path %>
+  <div>
+    <h2>All Products</h2>
+    <% @products.each do |product| %>
+    <p>Name: <%= product.name %> <br> Unit price of <%= number_to_currency(product.price) %></p>
+        <%= button_to "Add #{product.name} to cart", order_products_path(:product_id => product.id) %>
+    <% end%>
+  </div>
 </div>
 <%else %>
 <div class="container">
-  <h2>Welcome to pizzashopAA, you should log in before shop</h2>
-  <%= link_to "Sign in", new_user_session_path %>
+  <div class="banner1-frontpage">
+    <div class="banner1-frontpage-text">
+      <h5>Welcome to our pizza delivery website! Before you start browsing and placing your orders, we invite you to log in to your account.</h5>
+    </div>
+    <div class="banner1-frontpage-button">
+      <%= link_to "Sign in", new_user_session_path, class: "button-user" %> <br>
+    </div>
+  </div>
+  <div class="banner2-frontpage">
+    <h5>Don't have an account yet? No problem! Simply click on the "Sign Up" button and follow the prompts to create your account. It only takes a few minutes, and you'll be able to start placing orders right away.</h5>
+    <%= link_to "Sign up", new_user_registration_path, class: "button-user" %> <br>
+    <h5>So why wait? Log in or sign up now and start enjoying the convenience and deliciousness of our pizza delivery service!</h5>
+  </div>
+  <%= image_tag 'pizzaslice.png', alt: 'Pizza slice picture', class: 'frontpage-image' %>
 </div>
 <% end %>

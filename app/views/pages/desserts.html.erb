@@ -1,6 +1,6 @@
 <div class="container"></div>
   <div class="pizza-item">
-    <% @pizzas.each do | product | %>
+    <% @desserts.each do | product | %>
     <h3><%= product.name %> </h3>
     <h3>Unit price of <%= number_to_currency(product.price) %></h3>
     <%= button_to "Add #{product.name} to cart", order_products_path(:product_id => product.id) %>

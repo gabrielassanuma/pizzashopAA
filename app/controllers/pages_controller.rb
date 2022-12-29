@@ -16,6 +16,6 @@ class PagesController < ApplicationController
   end
 
   def desserts
-    @desserts = Product.where(subclass: "desserts")
+    @desserts = Product.where(subclass: "dessert")
   end
 end

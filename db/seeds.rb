@@ -32,14 +32,34 @@ end
 puts "Users created"
 
 puts "Creating Products"
-products = ["Peperoni", "Cheese", "Extra Cheese", "Hawaiian", "Supreme", "Veggie", "Spicy", "Special",
-            "Coca-cola", "Sprite", "Water", "Iced Tea",
-            "Ice Cream", "Cheese Cake", "Mousse"]
-15.times do |index|
+
+pizzas = ["Peperoni", "Cheese", "Extra Cheese", "Hawaiian", "Supreme", "Veggie", "Spicy", "Special", "Portuguese", "Meat Lovers", "Piri Piri Chicken", "Mushroon and Olives"]
+drinks = ["Coca-cola", "Sprite", "Water", "Iced Tea"]
+desserts = ["Ice Cream", "Cheese Cake", "Chocolate Mousse"]
+12.times do |index|
   product = Product.new(
-    name: products[index],
+    name: pizzas[index],
     description: Faker::Lorem.sentence(word_count: 10),
-    price: rand(1..8)
+    price: rand(10..14),
+    subclass: "pizza"
+  )
+  product.save!
+end
+4.times do |index|
+  product = Product.new(
+    name: drinks[index],
+    description: Faker::Lorem.sentence(word_count: 10),
+    price: rand(2..3),
+    subclass: "drink"
+  )
+  product.save!
+end
+4.times do |index|
+  product = Product.new(
+    name: desserts[index],
+    description: Faker::Lorem.sentence(word_count: 10),
+    price: rand(3..5),
+    subclass: "dessert"
   )
   product.save!
 end

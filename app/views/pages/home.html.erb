@@ -1,8 +1,17 @@
+<%if user_signed_in?%>
 <div class="container">
-  <h1>PizzashopAA</h1>
-  <%if signed_in? %>
-  <h1>Logged in</h1>
-  <%else  %>
-  <%= link_to "Enter pizzashopAA",  user_session_path, class: "btn btn-outline-secondary my-1" %>
-  <% end %>
+  <h2>All Products</h2>
+
+  <% @products.each do |product| %>
+  <p>Name: <%= product.name %> <br> Unit price of <%= number_to_currency(product.price) %></p>
+      <%= button_to "Add #{product.name} to cart", order_products_path(:product_id => product.id) %>
+  <% end%>
+
+  <%= link_to "New product", new_product_path %>
 </div>
+<%else %>
+<div class="container">
+  <h2>Welcome to pizzashopAA, you should log in before shop</h2>
+  <%= link_to "Sign in", new_user_session_path %>
+</div>
+<% end %>

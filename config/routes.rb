@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'products#index'
+  root 'pages#home'
   get 'carts/:id', to: "carts#show", as: "cart"
   delete 'carts/:id', to: "carts#destroy"
   post 'order_products/:id/add', to: "order_products#add_quantity", as: "order_product_add"

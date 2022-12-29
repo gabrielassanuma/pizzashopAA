@@ -11,7 +11,7 @@ class OrderProductsController < ApplicationController
       @order_product.product = chosen_product
     end
     @order_product.save
-    redirect_to cart_path(current_cart)
+    redirect_to cart_path(@current_cart)
   end 
 
   def add_quantity

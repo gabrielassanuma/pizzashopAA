@@ -8,8 +8,14 @@ class PagesController < ApplicationController
   end
 
   def pizzas
-  
+    @pizzas = Product.where(subclass: "pizza")
   end
 
+  def drinks
+    @drinks = Product.where(subclass: "drink")
+  end
 
+  def desserts
+    @desserts = Product.where(subclass: "desserts")
+  end
 end

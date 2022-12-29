@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
       @current_cart.order_products.each do |item|
         item.update(order_id: @order.id)
         item.update(cart_id: "")
-        raise
       end
       @current_cart.destroy
       session[:cart_id] = nil

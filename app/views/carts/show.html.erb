@@ -1,6 +1,7 @@
 <div class = "container">
   <h2>Your Cart</h2>
   <ul>
+    <% @cart.order_products.sort_by { |op| op.id } %>
     <% @cart.order_products.each do |order_product| %>
       Item: <%= order_product.product.name %>/ Price: <%= number_to_currency(order_product.product.price) %>/ Quantity: <%= order_product.quantity %>/ Total Price: <%= number_to_currency(order_product.total_price) %>
         <div class="icon-cart">

@@ -3,13 +3,22 @@
   <ul>
     <% @cart.order_products.sort_by { |op| op.id } %>
     <% @cart.order_products.each do |order_product| %>
-      Item: <%= order_product.product.name %>/ Price: <%= number_to_currency(order_product.product.price) %>/ Quantity: <%= order_product.quantity %>/ Total Price: <%= number_to_currency(order_product.total_price) %>
-        <div class="icon-cart">
-          <%= button_to "<i class='fas fa-plus'></i>".html_safe, order_product_add_path(:id => order_product), method: :post %>
-          <%= button_to "<i class='fas fa-minus'></i>".html_safe, order_product_reduce_path(:id => order_product), method: :post %>
-          <%= link_to "<i class='fas fa-trash'></i>".html_safe, order_product_path(order_product), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%>
+      <h3><%= order_product.product.name %>
+      <%= number_to_currency(order_product.product.price) %> <br></h3>
+      <div class="d-flex justify-content-start">
+        <div>
+          <h3>Quantity: <%= order_product.quantity %></h3>
         </div>
-    <% end %>
+        <div class="d-flex flex-row-reverse ">
+          <div class="mx-3"><%= button_to "<i class='fas fa-plus'></i>".html_safe, order_product_add_path(:id => order_product), method: :post %></div>
+          <div class="mx-3"><%= button_to "<i class='fas fa-minus'></i>".html_safe, order_product_reduce_path(:id => order_product), method: :post %></div> <br>
+        </div>
+      </div>
+      <div class="d-flex justify-content-start">
+        <h2>Total Price: <%= number_to_currency(order_product.total_price) %></h2>
+        <div class="mx-3 my-1"><%= link_to "<i class='fas fa-trash fa-lg'></i>".html_safe, order_product_path(order_product), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%> </div><br><br><br>
+      </div>
+    <% end %> 
   </ul>
   <h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
   <%= link_to "Proceed to checkout", new_order_path %> <br>

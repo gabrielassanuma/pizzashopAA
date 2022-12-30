@@ -1,8 +1,14 @@
 <div class="container">
-  <% @pizzas.each do | product | %>
-    <h3><%= product.name %> </h3>
-    <h4><%= product.description %></h4>
-    <h4><%= number_to_currency(product.price) %></h4>
-    <%= button_to "Add to cart", order_products_path(:product_id => product.id) %>
-  <% end%>
+  <div class="row">
+    <% @pizzas.each do | product | %>
+      <div class="col-md-6">
+        <h3><%= product.name %> </h3>
+        <h5><%= product.description %></h5>
+        <div class="d-flex justify-content-between">
+          <h4><%= number_to_currency(product.price) %></h4>
+          <%= button_to "Add to cart", order_products_path(:product_id => product.id) %>
+        </div>
+      </div>
+    <% end%>
+  </div>
 </div>

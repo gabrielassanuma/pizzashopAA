@@ -6,6 +6,11 @@
   <%= @user.house_number %> <br>
   <%= @user.additional_info %> <br>
 
+  <% @cart.order_products.each do |order_product| %>
+      <%= order_product.product.name %> / <%= order_product.quantity %> / <%= number_to_currency(order_product.total_price) %> <br>
+  <% end %>
+  Sub total: <%= number_to_currency(@cart.sub_total) %>
+
   <%= form_for(@order) do |f| %>
 
       <%= f.submit %>

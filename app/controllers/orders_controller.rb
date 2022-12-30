@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @cart = @current_cart
     @user = current_user  
     @order = Order.new
   end

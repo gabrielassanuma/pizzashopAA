@@ -17,12 +17,12 @@ class OrdersController < ApplicationController
     @order = Order.new(user_id: current_user.id, order_status: "new_order", total_price: @current_cart.sub_total)
     if @order.save
       @current_cart.order_products.each do |item|
-        item.update(order_id: @order.id)
-        item.update(cart_id: "")
+        item.update_column(:order_id, @order.id)
+        item.update_column(:cart_id, nil)
       end
       @current_cart.destroy
       session[:cart_id] = nil
-      redirect_to track_path notice: "Order was successfully created."
+      redirect_to track_path, notice: "Order was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

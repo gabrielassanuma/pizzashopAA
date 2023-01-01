@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+  <h1>Product Details</h1>
+  <dl>
+    <dt>Name</dt>
+    <dd><%= @product.name %></dd>
+    <dt>Description</dt>
+    <dd><%= @product.description %></dd>
+    <dt>Price</dt>
+    <dd><%= @product.price %></dd>
+  </dl>
+  <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-secondary" %>
+  <%= link_to 'Back', products_path, class: "btn btn-secondary" %>
+</div>

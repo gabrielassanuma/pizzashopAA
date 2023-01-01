@@ -1,10 +1,38 @@
-<div class="container">
-  <h2>All Products</h2>
-  <% @products.each do |product| %>
-  <p>Name: <%= product.name %> <br> Unit price of <%= number_to_currency(product.price) %></p>
-      <%= link_to "Edit", edit_product_path(product) %> |
-      <%= link_to "Delete", product_path(product), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
-  <% end%>
-
-  <%= link_to "New product", new_product_path %>
+<div class="container mt-5">
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+  <h1>Products</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.description %></td>
+          <td><%= product.price %></td>
+          <td>
+            <%= link_to 'Show', product, class: "btn btn-primary" %>
+            <%= link_to 'Edit', edit_product_path(product), class: "btn btn-secondary" %>
+            <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New Product', new_product_path, class: "btn btn-success" %>
 </div>

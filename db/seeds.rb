@@ -15,8 +15,13 @@ OrderProduct.destroy_all
 Product.destroy_all
 puts "Data base destroyed!"
 
+puts "Creating admin"
+admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", street_name: "NOT APPLICABLE", house_number: "NOT APPLICABLE", admin: true)
+admin.save!
+puts "Admin created"
+
 puts "Creating users"
-20.times do
+10.times do
   password = "111111"
   user = User.new(
     email: Faker::Internet.email,

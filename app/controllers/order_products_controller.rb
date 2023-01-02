@@ -17,9 +17,7 @@ class OrderProductsController < ApplicationController
       redirect_to drinks_path, notice: 'Product was successfully added to Cart.'
     else
       redirect_to desserts_path, notice: 'Product was successfully added to Cart.'
-
     end
-    
   end 
 
   def add_quantity

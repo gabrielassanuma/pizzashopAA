@@ -1,4 +1,4 @@
-<%if user_signed_in?%>
+<%if user_signed_in? && @user.admin == false%>
 <div class="container">
   <div class="menu-icons">
       <div class="icon">
@@ -20,6 +20,10 @@
         </a>
       </div>
   </div>
+</div>
+<%elsif user_signed_in? && @user.admin == true %>
+<div class="container">
+  <h3><%= link_to "Edit, create and delete Product", products_path%></h3>
 </div>
 <%else %>
 <div class="container">

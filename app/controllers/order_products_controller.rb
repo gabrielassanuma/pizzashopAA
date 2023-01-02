@@ -11,7 +11,15 @@ class OrderProductsController < ApplicationController
       @order_product.quantity += 1
     end
     @order_product.save
-    redirect_to cart_path(@current_cart)
+    if @order_product.product.subclass == "pizza"
+      redirect_to pizzas_path, notice: 'Product was successfully added to Cart.'
+    elsif @order_product.product.subclass == "drink"
+      redirect_to drinks_path, notice: 'Product was successfully added to Cart.'
+    else
+      redirect_to desserts_path, notice: 'Product was successfully added to Cart.'
+
+    end
+    
   end 
 
   def add_quantity

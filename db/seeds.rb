@@ -40,7 +40,7 @@ puts "Creating Products"
 
 pizzas = ["Peperoni", "Cheese", "Extra Cheese", "Hawaiian", "Supreme", "Veggie", "Spicy", "Special", "Portuguese", "Meat Lovers", "Piri Piri Chicken", "Mushroon and Olives"]
 drinks = ["Coca-cola", "Sprite", "Water", "Iced Tea"]
-desserts = ["Ice Cream", "Cheese Cake", "Chocolate Mousse"]
+desserts = ["Ice Cream", "Cheese Cake", "Chocolate Mousse", "Carrot Cake"]
 12.times do |index|
   product = Product.new(
     name: pizzas[index],

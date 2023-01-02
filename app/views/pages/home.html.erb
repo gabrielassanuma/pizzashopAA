@@ -23,7 +23,26 @@
 </div>
 <%elsif user_signed_in? && @user.admin == true %>
 <div class="container">
-  <h3><%= link_to "Edit, create and delete Product", products_path%></h3>
+  <div class="menu-icons">
+      <div class="icon">
+        <a href="/products">
+        <%= image_tag 'admin.png', alt: 'Admin picture', class: 'link-image' %>
+        <h3>Products</h3>
+        </a>
+      </div>
+      <div class="icon">
+        <a href="/products">
+        <%= image_tag 'driver.png', alt: 'Driver picture', class: 'link-image' %>
+        <h3>Delivery Drivers</h3>
+        </a>
+      </div>
+      <div class="icon">
+        <a href="/desserts">
+        <%= image_tag 'desserts.png', alt: 'Desserts picture', class: 'link-image' %>
+        <h3>Desserts<h3>
+        </a>
+      </div>
+  </div>
 </div>
 <%else %>
 <div class="container">

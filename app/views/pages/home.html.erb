@@ -1,4 +1,4 @@
-<%if user_signed_in? && @user.admin == false%>
+<% if user_signed_in? && @user.admin == false %>
 <div class="container">
   <div class="menu-icons">
       <div class="icon">
@@ -21,7 +21,7 @@
       </div>
   </div>
 </div>
-<%elsif user_signed_in? && @user.admin == true %>
+<% elsif user_signed_in? && @user.admin == true %>
 <div class="container">
   <div class="menu-icons">
       <div class="icon">
@@ -44,7 +44,7 @@
       </div>
   </div>
 </div>
-<%else %>
+<% else %>
 <div class="container">
   <div class="banner1-frontpage">
     <div class="banner1-frontpage-text">

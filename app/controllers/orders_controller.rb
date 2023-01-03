@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :update, :edit]
   def index
     @orders = Order.all
   end
 
   def show
-    @order = Order.find(params[:id])
     @ddrivers = Ddriver.all
   end
 
@@ -33,8 +33,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
-    @order.order_status = "in_transit"
     if @order.update(order_params)
       redirect_to front_store_path , notice: 'Ddriver was successfully added to Order.'
     else

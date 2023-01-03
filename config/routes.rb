@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'drinks', to: "pages#drinks", as: "drinks"
   get 'desserts', to: "pages#desserts", as: "desserts"
   get 'front_store', to: "pages#front_store", as: "front_store"
+  get 'kitchen', to: "pages#kitchen", as: "kitchen"
   get 'carts/:id', to: "carts#show", as: "cart"
   delete 'carts/:id', to: "carts#destroy"
   post 'order_products/:id/add', to: "order_products#add_quantity", as: "order_product_add"

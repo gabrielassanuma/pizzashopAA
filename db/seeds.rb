@@ -13,11 +13,12 @@ User.destroy_all
 Order.destroy_all
 OrderProduct.destroy_all
 Product.destroy_all
+Ddriver.destroy_all
 puts "Data base destroyed!"
 
 puts "Creating admin"
 admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", street_name: "NOT APPLICABLE", house_number: "NOT APPLICABLE", admin: true)
-admin.save!
+admin.save
 puts "Admin created"
 
 puts "Creating users"
@@ -32,7 +33,7 @@ puts "Creating users"
     street_name: Faker::Address.street_name,
     house_number: rand(1..1000)
   )
-  user.save!
+  user.save
 end
 puts "Users created"
 
@@ -48,7 +49,7 @@ desserts = ["Ice Cream", "Cheese Cake", "Chocolate Mousse", "Carrot Cake"]
     price: rand(10..14),
     subclass: "pizza"
   )
-  product.save!
+  product.save
 end
 4.times do |index|
   product = Product.new(
@@ -57,15 +58,16 @@ end
     price: rand(2..3),
     subclass: "drink"
   )
-  product.save!
-end
-4.times do |index|
-  product = Product.new(
-    name: desserts[index],
-    description: Faker::Lorem.sentence(word_count: 10),
-    price: rand(3..5),
-    subclass: "dessert"
-  )
-  product.save!
+  product.save
 end
 puts "Products created"
+
+
+4.times do |index|
+  ddriver = Ddriver.new(
+    first_name: Faker::Name.first_name ,
+    last_name: Faker::Name.last_name
+  )
+  ddriver.save
+end
+puts "Ddrivers created"

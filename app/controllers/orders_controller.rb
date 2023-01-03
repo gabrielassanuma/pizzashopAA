@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(user_id: current_user.id, order_status: "new_order", total_price: @current_cart.sub_total)
+    @order = Order.new(user_id: current_user.id, order_status: "new_order", total_price: @current_cart.sub_total, ddriver_id: nil)
     if @order.save
       @current_cart.order_products.each do |item|
         item.update_column(:order_id, @order.id)

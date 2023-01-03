@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_01_133213) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_03_105036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ddrivers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_133213) do
     t.string "order_status", default: "new_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "ddriver_id"
+    t.index ["ddriver_id"], name: "index_orders_on_ddriver_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -68,5 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_01_133213) do
 
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
+  add_foreign_key "orders", "ddrivers"
   add_foreign_key "orders", "users"
 end

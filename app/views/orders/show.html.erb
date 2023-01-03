@@ -1,13 +1,14 @@
-<div class="conatiner"></div>
-  <h2>All Orders</h2>
-  <% @orders.each do |order| %>
-    <p>Name: <%= order.name %></p>
-    <p>Email: <%= order.email %></p>
-    <p>Line Items: </p>
-    <ul>
-      <% order.line_items.each do |item| %>
-      <li><%= item.quantity %> x <%= item.product.name %></li>
-      <% end %>
-    </ul>
-  <% end %>
+<div class="container">
+  <div class="my-5">
+    <h2>Order ID: <%= @order.id %> <br>
+    Total Price: <%= @order.total_price %> <br>
+    Order Status: <%= @order.order_status %></h2>
+  </div>
+  <h1>Products</h1>
+  <ul>
+    <% sorted_order_products = @order.order_products.sort_by { |op| op.id } %>
+    <% sorted_order_products.each do | product | %>
+      <%= product.product.name %>   <%= product.quantity %> <br>
+    <% end %> 
+  </ul>
 </div>

@@ -18,5 +18,8 @@ class PagesController < ApplicationController
   def desserts
     @desserts = Product.where(subclass: "dessert")
   end
-  
+
+  def front_store
+    @orders = Order.all
+  end
 end

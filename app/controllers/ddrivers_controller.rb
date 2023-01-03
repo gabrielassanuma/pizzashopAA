@@ -38,6 +38,11 @@ class DdriversController < ApplicationController
     redirect_to ddrivers_url, notice: 'Ddriver was successfully destroyed.'
   end
 
+  def deactive
+    @ddriver = Ddriver.find(params[:id])
+    @ddriver.deactive!
+  end
+
   private
     def set_ddriver
       @ddriver = Ddriver.find(params[:id])

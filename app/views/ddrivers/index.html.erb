@@ -1,2 +1,28 @@
-<h1>Ddrivers#index</h1>
-<p>Find me in app/views/ddrivers/index.html.erb</p>
+<div class="container">
+  <h1>Delivery Drivers</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ddrivers.each do | ddriver | %>
+        <tr>
+          <td><%= ddriver.id %></td>
+          <td><%= ddriver.first_name %></td>
+          <td><%= ddriver.last_name %></td>
+          <td>
+            <%= link_to 'Show', ddriver, class: "btn btn-outline-primary my-1" %>
+            <%= link_to 'Edit', edit_ddriver_path(ddriver), class: "btn btn-outline-secondary my-1" %>
+            <%= link_to 'Destroy', ddriver, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger my-1" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'ADD New Driver', new_ddriver_path, class: "btn btn-outline-success my-1" %>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <%= form_for(@ddriver) do |f| %>
+    <p>
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name, required: true, autofocus: true, placeholder: "Enter first name" %>
+    </p>
+    <p>
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name, required: true, autofocus: true, placeholder: "Enter last name" %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>

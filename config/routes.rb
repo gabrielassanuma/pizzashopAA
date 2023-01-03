@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'ddrivers/index'
+  get 'ddrivers/show'
+  get 'ddrivers/update'
+  get 'ddrivers/new'
   devise_for :users
   root 'pages#home'
   get 'pizzas', to: "pages#pizzas", as: "pizzas"
@@ -13,5 +17,6 @@ Rails.application.routes.draw do
   delete 'order_products/:id', to: "order_products#destroy"
   resources :products
   resources :orders
+  resources :ddrivers
   get 'track', to: "pages#track", as: "track"
 end

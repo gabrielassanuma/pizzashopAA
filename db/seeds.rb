@@ -60,6 +60,15 @@ end
   )
   product.save
 end
+4.times do |index|
+  product = Product.new(
+    name: desserts[index],
+    description: Faker::Lorem.sentence(word_count: 10),
+    price: rand(2..3),
+    subclass: "dessert"
+  )
+  product.save
+end
 puts "Products created"
 
 

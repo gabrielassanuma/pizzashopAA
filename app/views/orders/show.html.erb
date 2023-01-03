@@ -11,4 +11,10 @@
       <%= product.product.name %>   <%= product.quantity %> <br>
     <% end %> 
   </ul>
+   <td>
+    <%= form_for @order do |f| %>
+      <%= f.collection_select :ddriver_id, Ddriver.all, :id, :first_name, {}, { class: "form-control" } %>
+      <%= f.submit "Set Driver", class: "btn btn-primary" %>
+    <% end %>
+  </td>
 </div>

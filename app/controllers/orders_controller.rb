@@ -5,12 +5,16 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @ddrivers = Ddriver.all
   end
 
   def new
     @cart = @current_cart
     @user = current_user  
     @order = Order.new
+  end
+
+  def edit
   end
 
   def create
@@ -28,5 +32,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.order_status = "in_transit"
+    if @order.update(order_params)
+      redirect_to front_store_path , notice: 'Ddriver was successfully added to Order.'
+    else
+      render :edit
+    end
+  end
+
+  private
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
+    def order_params
+      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id )
+    end
   
 end

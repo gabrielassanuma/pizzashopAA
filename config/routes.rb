@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   resources :orders do
     patch :ready, on: :member
     patch :finalize, on: :member
+    get 'track', on: :member, as: :track
   end
   resources :ddrivers do
     patch :deactive , on: :member
   end
-  get 'track', to: "pages#track", as: "track"
 end

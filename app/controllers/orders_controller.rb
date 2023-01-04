@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       end
       @current_cart.destroy
       session[:cart_id] = nil
-      redirect_to track_path(@order), notice: "Order was successfully created."
+      redirect_to track_order_path(@order), notice: "Order was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,6 +48,10 @@ class OrdersController < ApplicationController
   def finalize
     @order.finalize!
     redirect_to front_store_path, notice: 'Order was finalized'
+  end
+
+  def track
+    @order = Order.find(params[:id])
   end
 
   private

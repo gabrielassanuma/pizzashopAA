@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def track
+    @order = Order.find(params[:format])
   end
 
   def pizzas

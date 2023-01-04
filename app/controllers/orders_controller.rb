@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       end
       @current_cart.destroy
       session[:cart_id] = nil
-      redirect_to track_path, notice: "Order was successfully created."
+      redirect_to track_path(@order), notice: "Order was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id )
+      params.require(:order).permit(:id, :user_id, :total_price, :order_status, :ddriver_id )
     end
   
 end

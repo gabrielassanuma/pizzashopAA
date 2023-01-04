@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   resources :products do
     patch :deactive, on: :member
   end
-  resources :orders
+  resources :orders do
+    patch :ready, on: :member
+  end
   resources :ddrivers do
     patch :deactive , on: :member
   end

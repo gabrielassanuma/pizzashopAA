@@ -11,7 +11,7 @@
       <%= product.product.name %>   <%= product.quantity %> <br>
     <% end %> 
   </ul>
-  <% if @order.order_status == "new_order" %>
+  <% if @order.order_status == "ready" %>
    <td>
     <%= form_for @order do |f| %>
       <%= f.collection_select :ddriver_id, Ddriver.where(active: true), :id, :first_name, {}, { class: "form-control" } %>

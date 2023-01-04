@@ -51,10 +51,6 @@ class OrdersController < ApplicationController
   end
 
   def track
-    if @order.order_status != "finalized"
-      response.headers["Refresh"] = "4"
-      render :track
-    end
   end
 
   private

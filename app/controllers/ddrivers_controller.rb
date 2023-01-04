@@ -17,7 +17,6 @@ class DdriversController < ApplicationController
 
   def create
     @ddriver = Ddriver.new(ddriver_params)
-
     if @ddriver.save
       redirect_to @ddriver, notice: 'Ddriver was successfully created.'
     else

@@ -21,7 +21,7 @@
     <% end %> 
   </ul>
   <h3><div class="mb-5">Sub total: <%= number_to_currency(@cart.sub_total) %></div>
-  <div class="my-4"><%= link_to "Proceed to checkout", new_order_path %> <br></div>
-  <div class="my-4"><%= link_to "Empty cart", cart_path(@current_cart), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %> <br></div>
-  <div class="my-4"><%= link_to "Keep shopping", root_path%></div></h3>
+  <div class="my-2"><%= link_to "Proceed to checkout", new_order_path, class: "btn btn-outline-secondary my-1" %> <br></div>
+  <div class="my-2"><%= link_to "Empty cart", cart_path(@current_cart), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-secondary my-1" %> <br></div>
+  <div class="my-2"><%= link_to "Keep shopping", root_path, class: "btn btn-outline-secondary my-1" %></div></h3>
 </div>

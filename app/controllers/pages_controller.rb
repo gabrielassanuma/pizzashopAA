@@ -19,12 +19,10 @@ class PagesController < ApplicationController
 
   def kitchen
     @orders = Order.all
-
   end
 
   def front_store
     @orders = Order.all
-
   end
 
 end

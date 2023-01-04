@@ -4,13 +4,13 @@
       <div class="row">
         <div class="col text-center">
           <%= image_tag "emptycart.png", alt: 'A cute pizza cooker', class: '' %>
-          <h1>Your cart is Empty!</h1>
+          <h1>Your cart is empty!</h1>
           <h1>Go grab some food!</h1>
         </div>
       </div>
     </div>
   <% else %>
-    <h2>Your Cart</h2>
+    <h2>Your Cart</h2><br>
     <ul>
       <% sorted_order_products = @cart.order_products.sort_by { |op| op.id } %>
       <% sorted_order_products.each do |order_product| %>
@@ -29,8 +29,8 @@
           <h2>Total Price: <%= number_to_currency(order_product.total_price) %></h2>
           <div class="mx-3 my-1"><%= link_to "<i class='fas fa-trash fa-lg'></i>".html_safe, order_product_path(order_product), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%> </div><br><br><br>
         </div>
-    </ul>
     <% end %> 
+    </ul>
   <h3><div class="mb-5">Sub total: <%= number_to_currency(@cart.sub_total) %></div>
   <div class="my-2"><%= link_to "Proceed to checkout", new_order_path, class: "btn btn-outline-secondary my-1" %> <br></div>
   <div class="my-2"><%= link_to "Empty cart", cart_path(@current_cart), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-secondary my-1" %> <br></div>

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize]
+  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize, :track]
   def index
     @orders = Order.all
   end
@@ -51,7 +51,10 @@ class OrdersController < ApplicationController
   end
 
   def track
-    @order = Order.find(params[:id])
+    if @order.order_status != "finalized"
+      response.headers["Refresh"] = "4"
+      render :track
+    end
   end
 
   private

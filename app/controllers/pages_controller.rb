@@ -3,11 +3,7 @@ class PagesController < ApplicationController
   def home
     @user = current_user
   end
-
-  def track
-    @order = Order.find(params[:id])
-  end
-
+  
   def pizzas
     @pizzas = Product.where(subclass: "pizza")
   end

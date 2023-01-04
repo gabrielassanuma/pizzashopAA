@@ -1,3 +1,23 @@
 <div class="container">
-  
+    <ul>
+      <div>
+        <% @orders.each do | order | %>
+          <div class="my-3 border-bottom">
+            <div class="d-flex justify-content-between">
+              <div>
+                <li>ORDER ID: <%= order.id %></li>
+                <ul>
+                  <% order.order_products.each do | item | %>
+                    <li><%= item.product.name %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <div>
+                <%= link_to "Ready", root_path, class: "btn btn-outline-danger my-1" %>
+              </div>
+            </div>
+          </div>
+        <% end %> 
+      </div>
+  </ul>
 </div>

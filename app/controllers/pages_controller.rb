@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   end
 
   def kitchen
-    @products = Product.all
+    @orders = Order.all
   end
 
   def front_store

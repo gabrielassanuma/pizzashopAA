@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :edit, :ready]
+  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize]
   def index
     @orders = Order.all
   end
@@ -43,6 +43,11 @@ class OrdersController < ApplicationController
   def ready
     @order.ready!
     redirect_to kitchen_path, notice: 'Order was marked as ready'
+  end
+
+  def finalize
+    @order.finalize!
+    redirect_to front_store_path, notice: 'Order was finalized'
   end
 
   private

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   resources :orders do
     patch :ready, on: :member
+    patch :finalize, on: :member
   end
   resources :ddrivers do
     patch :deactive , on: :member

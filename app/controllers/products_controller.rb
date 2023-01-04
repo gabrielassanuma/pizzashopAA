@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :deactive]
 
   def index
     @products = Product.all
@@ -37,6 +37,11 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to root_path, notice: 'Product was successfully destroyed.'
+  end
+
+  def deactive
+    @product.deactive!
+    redirect_to products_path, notice: 'Product was deactived'
   end
 
   private

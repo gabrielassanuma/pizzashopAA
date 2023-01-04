@@ -1,5 +1,5 @@
 class DdriversController < ApplicationController
-  before_action :set_ddriver, only: [:show, :edit, :update, :destroy]
+  before_action :set_ddriver, only: [:show, :edit, :update, :destroy, :deactive]
 
   def index
     @ddrivers = Ddriver.all
@@ -39,8 +39,8 @@ class DdriversController < ApplicationController
   end
 
   def deactive
-    @ddriver = Ddriver.find(params[:id])
     @ddriver.deactive!
+    redirect_to ddrivers_path, notice: 'Driver was deactived'
   end
 
   private

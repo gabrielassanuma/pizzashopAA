@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
+ 
   def home
     @user = current_user
   end
@@ -18,9 +19,12 @@ class PagesController < ApplicationController
 
   def kitchen
     @orders = Order.all
+
   end
 
   def front_store
     @orders = Order.all
+
   end
+
 end

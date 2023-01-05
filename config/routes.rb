@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'ddrivers/index'
-  get 'ddrivers/show'
-  get 'ddrivers/update'
-  get 'ddrivers/new'
   devise_for :users
   root 'pages#home'
+  get 'my_orders', to: "pages#my_orders", as: "my_orders"
   get 'pizzas', to: "pages#pizzas", as: "pizzas"
   get 'drinks', to: "pages#drinks", as: "drinks"
   get 'desserts', to: "pages#desserts", as: "desserts"

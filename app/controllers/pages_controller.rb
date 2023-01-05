@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def home
     @user = current_user
   end
+
+  def my_orders
+    @orders = Order.where(id: current_user)
+  end
   
   def pizzas
     @pizzas = Product.where(subclass: "pizza")

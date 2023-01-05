@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def my_orders
-    @orders = Order.where(id: current_user)
+    @orders = Order.where(user_id: current_user)
   end
   
   def pizzas

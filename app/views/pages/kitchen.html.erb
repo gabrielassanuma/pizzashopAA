@@ -6,10 +6,10 @@
             <div class="my-3 border-bottom">
               <div class="d-flex justify-content-between">
                 <div>
-                  <li>ORDER ID: <%= order.id %></li>
+                  <div>ORDER ID: <%= order.id %></div>
                   <ul>
                     <% order.order_products.each do | item | %>
-                      <li><%= item.product.name %></li>
+                      <div><%= item.product.name %> / Quantity: <%= item.quantity %></div>
                     <% end %>
                   </ul>
                 </div>

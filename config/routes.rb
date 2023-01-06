@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     patch :deactive, on: :member
   end
   resources :orders do
+    patch :accept, on: :member
     patch :ready, on: :member
     patch :finalize, on: :member
     get 'track', on: :member, as: :track

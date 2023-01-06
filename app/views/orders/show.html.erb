@@ -1,15 +1,24 @@
 <div class="container">
-  <div class="my-5">
-    <h2>Order ID: <%= @order.id %> <br>
-    Total Price: <%= @order.total_price %> <br>
-    Order Status: <%= @order.order_status %></h2>
+  <div class="my-3">
+    <div>
+      <h2>Order details: </h2>
+    </div>
+    <h3>
+      <div class="my-1">Order ID: <%= @order.id %></div>
+      <div class="my-1">Total Price: <%= @order.total_price %></div>
+      <div class="my-1">Order Status: <%= @order.order_status %></div>
+    </h3>
   </div>
-  <h1>Products</h1>
+  <div class="my-1">
+    <h2>Products: </h2>
+  </div>
   <ul>
     <% sorted_order_products = @order.order_products.sort_by { |op| op.id } %>
     <% sorted_order_products.each do | product | %>
-      <%= product.product.name %>   <%= product.quantity %> <br>
+    <div>
+      <h3><%= product.product.name %> / Quantity:  <%= product.quantity %></h3>
     <% end %> 
+    </div>
   </ul>
   <% if @order.order_status == "ready" %>
    <td>
@@ -21,6 +30,8 @@
   </td>
   <% elsif @order.order_status == "in_transit" %>
     <%= link_to 'Finalize Order', finalize_order_path(@order), data: { turbo_method: "patch", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger my-1", remote: true %>
+  <% elsif @order.order_status == "new_order" %>
+    <%= link_to 'Accept Order', accept_order_path(@order), data: { turbo_method: "patch", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger my-1", remote: true %>
   <% end  %>
 
 </div>

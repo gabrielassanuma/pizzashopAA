@@ -10,4 +10,8 @@ class Order < ApplicationRecord
   def finalize!
     update(order_status: "finalized")
   end
+
+  def accept!
+    update(order_status: "accepted")
+  end
 end

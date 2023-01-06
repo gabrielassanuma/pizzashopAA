@@ -50,6 +50,11 @@ class OrdersController < ApplicationController
     redirect_to front_store_path, notice: 'Order was finalized'
   end
 
+  def accept
+    @order.accept!
+    redirect_to front_store_path, notice: 'Order was accepted'
+  end
+
   def track
   end
 

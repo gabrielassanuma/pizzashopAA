@@ -32,6 +32,17 @@ class OrdersController < ApplicationController
     end
   end
 
+  def repeat
+    order = Order.find(params[:id])
+    current_cart = @current_cart
+    current_cart.order_products.clear
+    order.order_products.each do |order_product|
+      item = OrderProduct.new(cart: current_cart, product: order_product.product)
+      item.save
+    end
+    redirect_to cart_path
+  end
+
   def update
     if @order.update(order_params)
       redirect_to front_store_path , notice: 'Ddriver was successfully added to Order.'

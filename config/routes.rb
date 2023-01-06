@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     patch :deactive, on: :member
   end
   resources :orders do
+    post 'repeat', on: :member, as: :repeat
     patch :accept, on: :member
     patch :ready, on: :member
     patch :finalize, on: :member

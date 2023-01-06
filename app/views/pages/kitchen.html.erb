@@ -2,7 +2,7 @@
     <ul>
       <div>
         <% @orders.each do | order | %>
-          <% if order.order_status == "new_order" %>
+          <% if order.order_status == "accepted" %>
             <div class="my-3 border-bottom">
               <div class="d-flex justify-content-between">
                 <div>

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize, :track]
+  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize, :track, :accept]
   def index
     @orders = Order.all
   end

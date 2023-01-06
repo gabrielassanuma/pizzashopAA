@@ -3,4 +3,11 @@
 @import "avatar";
 @import "form_legend_clear";
 @import "navbar";
-@import "button_user"
+@import "button_user";
+
+
+.responsive-image {
+  max-width: 30%; 
+  width: 100%; 
+  height: auto; 
+}

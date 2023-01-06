@@ -13,7 +13,11 @@
       <% end %>
       <div class="border-bottom my-3">
         <h3>Total Price: <%= number_to_currency(order.total_price) %></h3>
-        <h3><%= link_to "Repeat order", new_order_path(order), method: :post, class: "btn btn-outline-secondary my-1" %></h3>
+        <% if order.order_status == "finalized" %>
+          <h3><%= link_to "Repeat order", new_order_path(order), method: :post, class: "btn btn-outline-secondary my-1" %></h3>
+        <% else %>
+          <%= link_to "Track Order", track_order_path(order), class: "btn btn-outline-secondary my-1"   %>
+        <% end %>
       </div>
     <% end %>
   </div>

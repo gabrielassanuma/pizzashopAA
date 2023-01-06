@@ -1,19 +1,35 @@
 <div class= "container">
-  <h1>Confirm your details</h1>
-  <%= @user.username %> <br>
-  <%= @user.phone_number %> <br>
-  <%= @user.street_name %> <br>
-  <%= @user.house_number %> <br>
-  <%= @user.additional_info %> <br>
-
-  <% @cart.order_products.each do |order_product| %>
-      <%= order_product.product.name %> / <%= order_product.quantity %> / <%= number_to_currency(order_product.total_price) %> <br>
-  <% end %>
-  Sub total: <%= number_to_currency(@cart.sub_total) %>
-
-  <%= form_for(@order) do |f| %>
-
-      <%= f.submit %>
-  
-  <% end %>
+  <div class="container" >
+    <div class="my-3">
+      <h1>Confirm your details</h1>
+    </div>
+    <h3>
+      <div class="my-1">Your name: <%= @user.username %> </div>
+      <div class="my-1">Your phone number: <%= @user.phone_number %> </div>
+      <div>Your address:</div>
+      <div class="container mt-1">
+        <div>Street name: <%= @user.street_name %></div>
+        <div>House number: <%= @user.house_number %></div>
+        <% if @user.additional_info %>
+        <div>Additional info:<%= @user.additional_info %></div>
+        <% end %>
+      </div>
+    </h3>
+  </div>
+  <div class="mt-5">
+    <h2>Order: </h2>
+  </div>
+  <div class="container">
+    <% @cart.order_products.each do |order_product| %>
+        <div><h4><%= order_product.product.name %> Quantity: <%= order_product.quantity %></h4></div> 
+    <% end %>
+  </div>
+  <div>
+    <h2>Sub total: <%= number_to_currency(@cart.sub_total) %></h2>
+  </div>
+  <div class="mt-3">
+    <%= simple_form_for(@order) do |f| %>
+      <%= f.button :submit, class: "btn btn-outline-secondary my-1" %>
+    <% end %>
+  </div>
 </div>

@@ -2,24 +2,19 @@ class OrderProductsController < ApplicationController
   before_action :set_order_product, only: [:add_quantity, :reduce_quantity, :destroy]
 
   def create
-    chosen_product = Product.find(params[:product_id])
     current_cart = @current_cart
-    @order_product = current_cart.order_products.find_or_initialize_by(product: chosen_product)
-    if @order_product.new_record?
-      @order_product.cart = current_cart
-    else
-      @order_product.quantity += 1
-    end
-    @order_product.save
-    if @order_product.product.subclass == "pizza"
-      redirect_to pizzas_path, notice: 'Product was successfully added to Cart.'
-    elsif @order_product.product.subclass == "drink"
-      redirect_to drinks_path, notice: 'Product was successfully added to Cart.'
-    else
-      redirect_to desserts_path, notice: 'Product was successfully added to Cart.'
-    end
-  end 
-
+    product = Product.find(params[:product_id])
+    order_product = current_cart.order_products.find_or_initialize_by(product: product)
+    order_product.quantity += 1 if order_product.persisted?
+    order_product.save
+    redirect_path = case product.subclass
+                    when "pizza" then pizzas_path
+                    when "drink" then drinks_path
+                    else desserts_path
+                    end
+    redirect_to redirect_path, notice: 'Product was successfully added to Cart.'
+  end
+  
   def add_quantity
     @order_product.quantity += 1
     @order_product.save

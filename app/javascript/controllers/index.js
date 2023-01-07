@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ReloadAutoController from "./reload_auto_controller"
+application.register("reload-auto", ReloadAutoController)

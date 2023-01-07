@@ -1,73 +1,75 @@
-<div class= "container">
-  <% if @order.order_status == "new_order" %>
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= image_tag 'wait.png', alt: 'A classic clock', class: 'responsive-image mt-5' %>
-          <div class="progress mt-5">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="mt-5">
-            <h1>Awaiting acceptance of order</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% elsif @order.order_status == "accepted" %>
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= image_tag 'ovenpizza.png', alt: 'Pizza in the oven pic', class: 'responsive-image mt-5' %>
-          <div class="progress mt-5">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 25%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="mt-5">
-            <h1>Pizza in the oven</h1>
+<div data-controller="reload-auto">
+  <div class= "container">
+    <% if @order.order_status == "new_order" %>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <%= image_tag 'wait.png', alt: 'A classic clock', class: 'responsive-image mt-5' %>
+            <div class="progress mt-5">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mt-5">
+              <h1>Awaiting acceptance of order</h1>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% elsif @order.order_status == "ready" %>
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= image_tag 'deliverydriver.png', alt: 'Delivery driver pic', class: 'responsive-image mt-5' %>
-          <div class="progress mt-5">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="mt-5">
-            <h1>Order ready, waiting for delivery driver </h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% elsif @order.order_status == "in_transit" %>
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= image_tag 'ready.png', alt: 'Employee pic', class: 'responsive-image mt-5' %>
-          <div class="progress mt-5">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="mt-5">
-            <h1>Pizza in transit! You are almost there!</h1>
+    <% elsif @order.order_status == "accepted" %>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <%= image_tag 'ovenpizza.png', alt: 'Pizza in the oven pic', class: 'responsive-image mt-5' %>
+            <div class="progress mt-5">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 25%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mt-5">
+              <h1>Pizza in the oven</h1>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% else %>
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <%= image_tag 'thank.png', alt: 'Thank you pic', class: 'responsive-image mt-5' %>
-          <div class="progress mt-5">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <div class="mt-5">
-            <h1>Order deliveried! Enjoy your meal!</h1>
+    <% elsif @order.order_status == "ready" %>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <%= image_tag 'deliverydriver.png', alt: 'Delivery driver pic', class: 'responsive-image mt-5' %>
+            <div class="progress mt-5">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mt-5">
+              <h1>Order ready, waiting for delivery driver </h1>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% elsif @order.order_status == "in_transit" %>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <%= image_tag 'ready.png', alt: 'Employee pic', class: 'responsive-image mt-5' %>
+            <div class="progress mt-5">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mt-5">
+              <h1>Pizza in transit! You are almost there!</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <%= image_tag 'thank.png', alt: 'Thank you pic', class: 'responsive-image mt-5' %>
+            <div class="progress mt-5">
+              <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="mt-5">
+              <h1>Order deliveried! Enjoy your meal!</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

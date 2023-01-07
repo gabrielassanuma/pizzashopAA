@@ -5,7 +5,7 @@ export default class extends Controller {
   connect() {
     this.interval = setInterval(() => {
       window.location.reload()
-    }, 2000)
+    }, 5000)
   }
 
   disconnect() {

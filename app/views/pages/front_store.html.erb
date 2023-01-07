@@ -1,26 +1,28 @@
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Order Status</th>
-        <th>Total Price</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @orders.each do | order | %>
-        <% if order.order_status != "finalized" %>
-          <tr>
-            <td><%= order.id %></td>
-            <td><%= order.order_status %></td>
-            <td><%= order.total_price %></td>
-            <td>
-              <%= link_to 'Show', order, class: "btn btn-outline-primary my-1" %>
-            </td>
-          </tr>
-        <%end %>
-      <% end %>
-    </tbody>
-  </table>
+<div data-controller="reload-auto">
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Order Status</th>
+          <th>Total Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do | order | %>
+          <% if order.order_status != "finalized" %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= order.order_status %></td>
+              <td><%= order.total_price %></td>
+              <td>
+                <%= link_to 'Show', order, class: "btn btn-outline-primary my-1" %>
+              </td>
+            </tr>
+          <%end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

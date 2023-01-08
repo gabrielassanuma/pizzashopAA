@@ -1,26 +1,5 @@
 <% if user_signed_in? && @user.admin == false %>
-<div class="container">
-  <div class="menu-icons">
-      <div class="icon">
-        <a href="/pizzas">
-        <%= image_tag 'pizza.png', alt: 'Pizza slice picture', class: 'link-image' %>
-        <h3>Pizzas</h3>
-        </a>
-      </div>
-      <div class="icon">
-        <a href="/drinks">
-        <%= image_tag 'drinks.png', alt: 'Drinks picture', class: 'link-image' %>
-        <h3>Drinks</h3>
-        </a>
-      </div>
-      <div class="icon">
-        <a href="/desserts">
-        <%= image_tag 'desserts.png', alt: 'Desserts picture', class: 'link-image' %>
-        <h3>Desserts<h3>
-        </a>
-      </div>
-  </div>
-</div>
+  <%= render "menu" %>
 <% elsif user_signed_in? && @user.admin == true %>
 <div class="container">
   <div class="menu-icons">

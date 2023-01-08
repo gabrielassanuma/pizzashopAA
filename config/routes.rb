@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'pages#home'
+  get 'take_away', to: "pages#take_away", as: "take_away"
   get 'my_orders', to: "pages#my_orders", as: "my_orders"
   get 'pizzas', to: "pages#pizzas", as: "pizzas"
   get 'drinks', to: "pages#drinks", as: "drinks"

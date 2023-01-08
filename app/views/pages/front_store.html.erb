@@ -17,7 +17,20 @@
               <td><%= order.order_status %></td>
               <td><%= order.total_price %></td>
               <td>
-                <%= link_to 'Show', order, class: "btn btn-outline-primary my-1" %>
+                <div class="btn-group-vertical">
+                  <%= link_to 'Show Order', order, class: "btn btn-outline-primary my-1" %>
+                  <% if order.order_status == "in_transit" %>
+                    <%= link_to 'Finalize Order', finalize_order_path(order), data: { turbo_method: "patch", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-secondary my-1", remote: true %>
+                  <% elsif order.order_status == "new_order" %>
+                    <%= link_to 'Accept Order', accept_order_path(order), data: { turbo_method: "patch", turbo_confirm: "Are you sure?" }, class: "btn btn-outline-secondary my-1", remote: true %>
+                  <% elsif order.order_status == "ready" %>         
+                    <%= simple_form_for order  do |f| %>
+                      <%= f.input :ddriver_id, collection: Ddriver.where(active: true), label_method: :first_name, value_method: :id, label: "Driver", input_html: { class: "form-control" } %>
+                      <%= f.input :order_status, as: :hidden, input_html: { value: "in_transit" } %>
+                      <%= f.button :submit, "Set Driver", class: "btn btn-outline-secondary my-1" %>
+                    <% end %>
+                  <% end  %>
+                </div>
               </td>
             </tr>
           <%end %>

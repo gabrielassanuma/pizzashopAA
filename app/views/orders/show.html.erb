@@ -3,10 +3,15 @@
     <div>
       <h2>Order details: </h2>
     </div>
-    <h3>
-      <div class="my-1">Order ID: <%= @order.id %></div>
-      <div class="my-1">Order Status: <%= @order.order_status %></div>
-    </h3>
+    <div class= "container">
+      <h3>
+        <div class="my-1">Order ID: <%= @order.id %></div>
+        <div class="my-1">Customer name: <%= @order.user.username %></div>
+        <div class="my-1">Customer phone number: <%= @order.user.phone_number %></div>
+        <div class="my-1"></div>
+        <div class="my-1">Order Status: <%= @order.order_status %></div>
+      </h3>
+    </div>
   </div>
   <div class="my-1">
     <h2>Products: </h2>
@@ -19,4 +24,7 @@
     <% end %> 
     </div>
   </ul>
+  <div class="my-5">
+    <h2>Subtotal: <%= number_to_currency(@order.total_price) %></h2>
+  </div>
 </div>

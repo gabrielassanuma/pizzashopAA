@@ -1,0 +1,32 @@
+<div class="container">
+  <% @orders.each do | order | %>
+    <div class="my-3">
+      <div>
+        <h2>Order details: </h2>
+      </div>
+      <div class= "container">
+        <h3>
+          <div class="my-1">Order ID: <%= order.id %></div>
+          <div class="my-1">Customer name: <%= order.user.username %></div>
+          <div class="my-1">Customer phone number: <%= order.user.phone_number %></div>
+          <div class="my-1"></div>
+          <div class="my-1">Order Status: <%= order.order_status %></div>
+        </h3>
+      </div>
+    </div>
+    <div class="my-1">
+      <h2>Products: </h2>
+    </div>
+    <ul>
+      <% sorted_order_products = order.order_products.sort_by { |op| op.id } %>
+      <% sorted_order_products.each do | product | %>
+      <div>
+        <h3><%= product.product.name %> / Quantity:  <%= product.quantity %></h3>
+      <% end %> 
+      </div>
+    </ul>
+    <div class="my-3 border-bottom">
+      <h2>Subtotal: <%= number_to_currency(order.total_price) %></h2>
+    </div>
+  <% end %>
+</div>

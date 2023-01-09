@@ -9,8 +9,6 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @cart = @current_cart
-    @user = current_user  
     @order = Order.new
   end
 
@@ -18,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(user_id: current_user.id, order_status: "new_order", total_price: @current_cart.sub_total, ddriver_id: nil)
+    @order = Order.new(order_params)
     if @order.save
       @current_cart.order_products.each do |item|
         item.update_column(:order_id, @order.id)
@@ -75,7 +73,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:id, :user_id, :total_price, :order_status, :ddriver_id )
+      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone )
     end
   
 end

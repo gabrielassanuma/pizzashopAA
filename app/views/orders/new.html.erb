@@ -50,7 +50,7 @@
         <%= f.hidden_field :order_status, value: "new_order" %>
         <%= f.hidden_field :total_price, value: @current_cart.sub_total %>
         <%= f.hidden_field :ddriver_id, value: "" %>
-        <%= f.input :take_away_name %>
+        <%= f.input :take_away_name, required: true, error: "O campo nome é obrigatório" %>
         <%= f.input :take_away_phone %>
         <%= f.button :submit, class: "btn btn-outline-secondary my-1" %>
       <% end %>

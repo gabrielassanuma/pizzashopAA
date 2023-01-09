@@ -5,6 +5,7 @@
         <tr>
           <th>ID</th>
           <th>Order Status</th>
+          <th>Order type</th>
           <th>Total Price</th>
           <th>Actions</th>
         </tr>
@@ -15,6 +16,13 @@
             <tr>
               <td><%= order.id %></td>
               <td><%= order.order_status %></td>
+              <td>
+                <% if order.take_away_name == "" %>
+                  Delivery
+                <% else %>
+                  Take away
+                <% end %>
+              </td>
               <td><%= order.total_price %></td>
               <td>
                 <div class="btn-group-vertical">

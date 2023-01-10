@@ -1,6 +1,0 @@
-[app]
-name = "pizzashopapp"
-type = "ruby"
-
-[web]
-command = "bundle exec puma -C config/puma.rb"

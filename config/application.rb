@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.hosts << /[a-z0-9\-]+\.up\.railway\.app/
+
 
 module PizzashopAA
   class Application < Rails::Application

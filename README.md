@@ -45,11 +45,12 @@ Start the server
 ```
 
 
+To log-in on Store Side:
 ```bash
-Enter app as an admin:
 user: 000000000
 password: 111111
 ```
+
 
 DB SCHEMA:
 

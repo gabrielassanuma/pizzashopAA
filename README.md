@@ -48,6 +48,8 @@ Start the server
 To log-in on Store Side:
 ```bash
 user: 000000000
+```
+```bash
 password: 111111
 ```
 

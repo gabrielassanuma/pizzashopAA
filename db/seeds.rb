@@ -17,12 +17,24 @@ Ddriver.destroy_all
 puts "Data base destroyed!"
 
 puts "Creating admin"
-admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", street_name: "NOT APPLICABLE", house_number: "NOT APPLICABLE", admin: true)
+admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "NOT APPLICABLE", admin: true)
 admin.save
 puts "Admin created"
 
 puts "Creating users"
-10.times do
+
+addresses = ['Rua Rodrigues de Faria 63, Lisboa',
+  'Rua do Ginjal 69, Almada',
+  'Calçada da Pampulha 27, Lisboa',
+  'Rua das Portas de Santo Antão 150, Lisboa',
+  'Rua Bulhão Pato 2, Lisboa',
+  'Avenida Almirante Reis 1 H, Lisboa',
+  'Praça dos Restauradores 79, Lisboa',
+  'Rua Gilberto Rola 20, Lisboa',
+  'Rua do Loreto 2, Lisboa',
+  'Largo Santos 5, Lisboa']
+
+10.times do | index |
   password = "111111"
   user = User.new(
     email: Faker::Internet.email,
@@ -30,8 +42,7 @@ puts "Creating users"
     password_confirmation: password,
     username: Faker::Name.name_with_middle,
     phone_number: Faker::Number.number(digits: 9),
-    street_name: Faker::Address.street_name,
-    house_number: rand(1..1000)
+    address: addresses[index]
   )
   user.save
 end

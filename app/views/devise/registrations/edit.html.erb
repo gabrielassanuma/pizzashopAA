@@ -29,13 +29,11 @@
         <%= f.input :username,
                     required: false,
                     input_html: { autocomplete: "username" } %>
-        <%= f.input :street_name,
+        <%= f.input :address,
                     required: false,
                     autofocus: true,
-                    input_html: { autocomplete: "stree_name" } %>
-        <%= f.input :house_number,
-                    required: false,
-                    input_html: { autocomplete: "house_number" } %>
+                    input_html: {data: {address_autocomplete_target: "address"}},
+                    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
         <%= f.input :additional_info,
                     required: false,
                     input_html: { autocomplete: "additional_info" } %>

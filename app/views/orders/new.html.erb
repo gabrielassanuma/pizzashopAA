@@ -7,10 +7,8 @@
     <h3>
       <div class="my-1">Your name: <%= current_user.username %> </div>
       <div class="my-1">Your phone number: <%= current_user.phone_number %> </div>
-      <div>Your address:</div>
-      <div class="container mt-1">
-        <div>Street name: <%= current_user.street_name %></div>
-        <div>House number: <%= current_user.house_number %></div>
+      <div class="mt-1">
+        <div>Address: <%= current_user.address %></div>
         <% if current_user.additional_info %>
         <div>Additional info:<%= current_user.additional_info %></div>
         <% end %>

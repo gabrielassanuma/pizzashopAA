@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_110741) do
     t.string "phone_number"
     t.string "additional_info"
     t.boolean "admin", default: false
+    t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -3,7 +3,6 @@ class Order < ApplicationRecord
   has_many :order_products
   has_one :ddriver
 
-  private
   def ready!
     update(order_status: "ready")
   end

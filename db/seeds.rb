@@ -28,7 +28,7 @@ addresses = ['Rua Rodrigues de Faria 63, Lisboa',
   'Calçada da Pampulha 27, Lisboa',
   'Rua das Portas de Santo Antão 150, Lisboa',
   'Rua Bulhão Pato 2, Lisboa',
-  'Avenida Almirante Reis 1 H, Lisboa',
+  'Avenida Almirante Reis 1, Lisboa',
   'Praça dos Restauradores 79, Lisboa',
   'Rua Gilberto Rola 20, Lisboa',
   'Rua do Loreto 2, Lisboa',
@@ -91,3 +91,14 @@ puts "Products created"
   ddriver.save
 end
 puts "Ddrivers created"
+
+delivery_prices = [1, 1.5, 2, 3]
+zones = ["A", "B", "C", "D"]
+4.times do | index |
+  delivery_fee = DeliveryFee.new(
+    price: delivery_prices[index],
+    zone: zones[index]
+  )
+  delivery_fee.save
+end
+puts "Delivery fees created"

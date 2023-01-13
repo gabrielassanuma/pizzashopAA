@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :password, length: { in: 6..20 }
   validates :phone_number, :username, :address, presence: true
   geocoded_by :address
-  validate :distance_from_specific_point
   after_validation :geocode, if: :will_save_change_to_address?
+  validate :distance_from_store
 
   def email_required?
     false
@@ -19,11 +19,12 @@ class User < ApplicationRecord
     false
   end
 
-  def distance_from_specific_point
+  def distance_from_store
+    geocode
     if self.latitude.present? && self.longitude.present?
       distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [38.7246365, -9.1509999])
-      if distance > 5
-        errors.add(:address, "is too far from the specific point")
+      if distance > 20
+        errors.add(:address, "Sorry, is too far from store")
       end
     end
   end

@@ -56,7 +56,7 @@ password: 111111
 
 DB SCHEMA:
 
-<img width="954" alt="image" src="https://user-images.githubusercontent.com/104199523/212322713-042db0ba-d5ad-43eb-a150-c3fab57978c5.png">
+<img width="946" alt="image" src="https://user-images.githubusercontent.com/104199523/212472936-a577267b-449b-40fe-93d0-3a897ad26a6a.png">
 
 
 Customer side - User flow: 

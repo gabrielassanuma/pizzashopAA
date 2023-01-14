@@ -30,19 +30,14 @@
   </div>
 </div>
 <% else %>
-<div class="container">
-  <div class="banner1-frontpage">
-    <div class="banner1-frontpage-text">
-      <h5>Welcome to our pizza delivery website! Before you start browsing and placing your orders, we invite you to log in to your account.</h5>
-    </div>
-    <div class="banner1-frontpage-button">
+<div class="d-flex justify-content-center">
+  <div class="card text-center" style="width: 20rem; height: 30rem;">
+    <div class="card-body">
+      <h2 class="card-title">Welcome to pizzashopAA</h2>
+      <p class="card-text"> <h4>Web application made by Gabriel Assanuma. <br></h4>
+      This app is configured to serve users within a maximum radius of 20km from Praça Marque de Pombal. <br> To log in as an admin, use: <br>Phone number: 000000000 <br> Password: 111111. <br>Order your pizza now!</p>
       <%= link_to "Sign in", new_user_session_path, class: "button-user" %> <br>
     </div>
-  </div>
-  <div class="banner2-frontpage">
-    <h5>Don't have an account yet? No problem! Simply click on the "Sign Up" button and follow the prompts to create your account. It only takes a few minutes, and you'll be able to start placing orders right away.</h5>
-    <%= link_to "Sign up", new_user_registration_path, class: "button-user" %> <br>
-    <h5>So why wait? Log in or sign up now and start enjoying the convenience and deliciousness of our pizza delivery service!</h5>
   </div>
 </div>
 <% end %>

@@ -29,7 +29,7 @@ end
 puts "Delivery fees created"
 
 puts "Creating admin"
-admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "NOT APPLICABLE", admin: true)
+admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "NOT APPLICABLE", admin: true, delivery_fee_id: "")
 admin.save
 puts "Admin created"
 

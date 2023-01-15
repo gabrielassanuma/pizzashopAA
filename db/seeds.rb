@@ -10,7 +10,9 @@ OrderProduct.destroy_all
 Product.destroy_all
 Ddriver.destroy_all
 puts "Data base destroyed!"
+puts "--------------------------------------------------"
 
+puts "--------------------------------------------------"
 puts "Creating delivery_fees - waiting for 4"
 delivery_prices = [1, 1.5, 2, 3]
 zones = ["A", "B", "C", "D"]
@@ -23,14 +25,17 @@ zones = ["A", "B", "C", "D"]
   puts "  delivery_fee #{index} created"
 end
 puts "Delivery fees created"
+puts "--------------------------------------------------"
 
+puts "--------------------------------------------------"
 puts "Creating admin - waiting for 1"
 admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "Praça Marquês De Pombal 3, 1250-098 Lisbon", admin: true, delivery_fee_id: "")
 admin.save!
 puts "Admin created"
+puts "--------------------------------------------------"
 
+puts "--------------------------------------------------"
 puts "Creating users - waiting for 10"
-
 addresses = ['Rua Rodrigues de Faria 63, Lisboa',
   'Rua do Ginjal 69, Almada',
   'Calçada da Pampulha 27, Lisboa',
@@ -56,7 +61,9 @@ addresses = ['Rua Rodrigues de Faria 63, Lisboa',
   puts "  user #{index} created"
 end
 puts "Users created"
+puts "--------------------------------------------------"
 
+puts "--------------------------------------------------"
 puts "Creating Products - waiting for 20"
 pizzas = ["Peperoni", "Cheese", "Extra Cheese", "Hawaiian", "Supreme", "Veggie", "Spicy", "Special", "Portuguese", "Meat Lovers", "Piri Piri Chicken", "Mushroon and Olives"]
 drinks = ["Coca-cola", "Sprite", "Water", "Iced Tea"]
@@ -92,7 +99,9 @@ end
   puts "   product #{index + 16} created"
 end
 puts "Products created"
+puts "--------------------------------------------------"
 
+puts "--------------------------------------------------"
 puts "Creating Ddrivers - waiting for 4"
 4.times do |index|
   ddriver = Ddriver.new(
@@ -103,3 +112,4 @@ puts "Creating Ddrivers - waiting for 4"
   puts "  ddriver #{index} created"
 end
 puts "Ddrivers created"
+puts "--------------------------------------------------"

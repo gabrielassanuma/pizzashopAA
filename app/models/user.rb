@@ -30,11 +30,13 @@ class User < ApplicationRecord
         self.delivery_fee_id = 2
       elsif distance < 10
         self.delivery_fee_id = 3
-      elsif distance <= 20
+      elsif distance >= 10 && distance < 20
         self.delivery_fee_id = 4
       else
         errors.add(:address, "Sorry, is too far from store")
       end
+    else
+      errors.add(:address, "Sorry, your address is invalid or can't be find by our system, contact store")
     end
   end
 end

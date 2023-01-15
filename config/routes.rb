@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'order_products', to: "order_products#create"
   get 'order_products/:id', to: "order_products#show", as: "order_product"
   delete 'order_products/:id', to: "order_products#destroy"
+  resources :delivery_fees , only: [:index, :edit]
   resources :products do
     patch :deactive, on: :member
   end

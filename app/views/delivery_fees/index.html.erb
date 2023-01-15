@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Zone</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @delivery_fees.each do | delivery_fee | %>
+        <tr>
+          <td><%= delivery_fee.id %></td>
+          <td><%= delivery_fee.zone %></td>
+          <td><%= delivery_fee.price %></td>
+          <td>
+            <%= link_to 'Edit', delivery_fees_edit_path(delivery_fee), class: "btn btn-outline-secondary my-1" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

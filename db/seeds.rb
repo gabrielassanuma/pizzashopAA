@@ -9,12 +9,24 @@
 require 'faker'
 
 puts "Dropping data base..."
+DeliveryFee.destroy_all
 User.destroy_all
 Order.destroy_all
 OrderProduct.destroy_all
 Product.destroy_all
 Ddriver.destroy_all
 puts "Data base destroyed!"
+
+delivery_prices = [1, 1.5, 2, 3]
+zones = ["A", "B", "C", "D"]
+4.times do | index |
+  deliveryfee = DeliveryFee.new(
+    price: delivery_prices[index],
+    zone: zones[index]
+  )
+  deliveryfee.save
+end
+puts "Delivery fees created"
 
 puts "Creating admin"
 admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "NOT APPLICABLE", admin: true)
@@ -91,14 +103,3 @@ puts "Products created"
   ddriver.save
 end
 puts "Ddrivers created"
-
-delivery_prices = [1, 1.5, 2, 3]
-zones = ["A", "B", "C", "D"]
-4.times do | index |
-  delivery_fee = DeliveryFee.new(
-    price: delivery_prices[index],
-    zone: zones[index]
-  )
-  delivery_fee.save
-end
-puts "Delivery fees created"

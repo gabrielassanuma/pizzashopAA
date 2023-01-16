@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @delivery_fee = current_user.delivery_fee.price
+    id_delivery = current_user.delivery_fee_id
+    @delivery_fee = DeliveryFee.find(id_delivery)
   end
 
   def edit

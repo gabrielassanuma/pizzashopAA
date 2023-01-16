@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :order
-  belongs_to :delivery_fee
+  has_one :delivery_fee
   validates :phone_number, length: { is: 9 }, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :phone_number, :username, :address, presence: true

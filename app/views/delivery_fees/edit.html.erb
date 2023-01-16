@@ -1,5 +1,7 @@
-<%= form_for @delivery_fee do |f| %>
-  <%= f.label :price %>
-  <%= f.text_field :price, value: @delivery_fee.price %>
-  <%= f.submit "Update Price" %>
-<% end %>
+<div class="container">
+  <%= form_for @delivery_fee do |f| %>
+    <%= f.label :price %>
+    <%= f.text_field :price, value: @delivery_fee.price %>
+    <%= f.submit "Update Price" %>
+  <% end %>
+</div>

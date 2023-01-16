@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   post 'order_products', to: "order_products#create"
   get 'order_products/:id', to: "order_products#show", as: "order_product"
   delete 'order_products/:id', to: "order_products#destroy"
-  resources :delivery_fees , only: [:index, :edit]
+  resources :delivery_fees , only: [:index, :edit, :update]
   resources :products do
     patch :deactive, on: :member
   end
-  resources :orders do
+  resources :orders, only: [:index, :new, :show] do
     post 'repeat', on: :member, as: :repeat
     patch :accept, on: :member
     patch :ready, on: :member

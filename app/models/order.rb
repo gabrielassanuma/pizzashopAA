@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products
   has_one :ddriver
+  has_one :delivery_fee, through: :user
 
 
   def ready!

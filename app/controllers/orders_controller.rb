@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @delivery_fee = current_user.delivery_fee.price
   end
 
   def edit

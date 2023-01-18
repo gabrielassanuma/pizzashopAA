@@ -3,8 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :order
-  has_one :delivery_fee
+  has_many :orders
   validates :phone_number, length: { is: 9 }, uniqueness: true
   validates :password, length: { in: 6..20 }
   validates :phone_number, :username, :address, presence: true
@@ -20,23 +19,23 @@ class User < ApplicationRecord
     false
   end
 
-  def distance_from_store
-    geocode
-    if self.latitude.present? && self.longitude.present?
-      distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [38.7246365, -9.1509999])
-      if distance < 3
-        self.delivery_fee_id = 1
-      elsif distance < 5
-        self.delivery_fee_id = 2
-      elsif distance < 10
-        self.delivery_fee_id = 3
-      elsif distance >= 10 && distance < 20
-        self.delivery_fee_id = 4
-      else
-        errors.add(:address, "Sorry, is too far from store")
-      end
-    else
-      errors.add(:address, "Sorry, your address is invalid or can't be find by our system, contact store")
-    end
-  end
+  # def distance_from_store
+  #   geocode
+  #   if self.latitude.present? && self.longitude.present?
+  #     distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [38.7246365, -9.1509999])
+  #     if distance < 3
+  #       self.delivery_fee_id = 1
+  #     elsif distance < 5
+  #       self.delivery_fee_id = 2
+  #     elsif distance < 10
+  #       self.delivery_fee_id = 3
+  #     elsif distance >= 10 && distance < 20
+  #       self.delivery_fee_id = 4
+  #     else
+  #       errors.add(:address, "Sorry, is too far from store")
+  #     end
+  #   else
+  #     errors.add(:address, "Sorry, your address is invalid or can't be find by our system, contact store")
+  #   end
+  # end
 end

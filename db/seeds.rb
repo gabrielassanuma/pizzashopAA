@@ -29,7 +29,7 @@ puts "--------------------------------------------------"
 
 puts "--------------------------------------------------"
 puts "Creating admin - waiting for 1"
-admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "Praça Marquês De Pombal 3, 1250-098 Lisbon", admin: true, delivery_fee_id: "")
+admin = User.new(email: "admin@pizza.shop", password: 111111, password_confirmation: 111111, username:"admin", phone_number: "000000000", address: "Praça Marquês De Pombal 3, 1250-098 Lisbon", admin: true)
 admin.save!
 puts "Admin created"
 puts "--------------------------------------------------"

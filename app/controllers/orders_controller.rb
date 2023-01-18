@@ -10,8 +10,16 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    id_delivery = current_user.delivery_fee_id
-    @delivery_fee = DeliveryFee.find(id_delivery)
+    distance = Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [38.7246365, -9.1509999])
+    if distance < 3
+      @delivery_fee = DeliveryFee.find(1)
+    elsif distance < 5
+      @delivery_fee = DeliveryFee.find(2)
+    elsif distance < 10
+      @delivery_fee = DeliveryFee.find(3)
+    elsif distance > 10 && distance < 20
+      @delivery_fee = DeliveryFee.find(4)
+    end
   end
 
   def edit
@@ -75,7 +83,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone )
+      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone, :delivery_fee_id )
     end
   
 end

@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   has_one :delivery_fee
 
 
+
   def ready!
     update(order_status: "ready")
   end
@@ -16,4 +17,5 @@ class Order < ApplicationRecord
   def accept!
     update(order_status: "accepted")
   end
+
 end

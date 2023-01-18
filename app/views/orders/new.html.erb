@@ -35,6 +35,7 @@
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :order_status, value: "new_order" %>
         <%= f.hidden_field :total_price, value: @current_cart.sub_total + @delivery_fee.price %>
+        <%= f.hidden_field :delivery_fee_id, value: @delivery_fee.id %>
         <%= f.hidden_field :ddriver_id, value: "" %>
         <%= f.hidden_field :take_away_name, value:"" %>
         <%= f.hidden_field :take_away_phone, value:"" %>

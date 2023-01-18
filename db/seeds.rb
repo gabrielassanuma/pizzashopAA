@@ -21,7 +21,7 @@ zones = ["A", "B", "C", "D"]
     price: delivery_prices[index],
     zone: zones[index]
   )
-  deliveryfee.save
+  deliveryfee.save!
   puts "  delivery_fee #{index} created"
 end
 puts "Delivery fees created"

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :products do
     patch :deactive, on: :member
   end
-  resources :orders, only: [:index, :create, :new, :show] do
+  resources :orders, only: [:index, :create, :new, :show, :update] do
     post 'repeat', on: :member, as: :repeat
     patch :accept, on: :member
     patch :ready, on: :member

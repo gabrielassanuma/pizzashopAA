@@ -10,4 +10,8 @@ RSpec.describe Ddriver, type: :model do
     end
   end
 
+  describe 'associations' do
+    it { should have_many(:orders) }
+  end
+
 end

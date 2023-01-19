@@ -17,4 +17,10 @@ RSpec.describe Cart, type: :model do
       expect(cart.sub_total).to eq(80.00)
     end
   end
+
+  describe "associations" do
+    it { should have_many(:order_products) }
+    it { should have_many(:products) }
+  end
+
 end

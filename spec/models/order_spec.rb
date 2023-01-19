@@ -25,4 +25,12 @@ RSpec.describe Order, type: :model do
       expect(order.order_status).to eq('accepted')
     end
   end
+
+  describe 'associations' do 
+    it { should belong_to(:user) }
+    it { should have_many(:order_products) }
+    it { should have_one(:ddriver) }
+    it { should have_one(:delivery_fee) }
+
+  end
 end

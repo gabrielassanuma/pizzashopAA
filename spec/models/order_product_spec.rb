@@ -12,4 +12,11 @@ RSpec.describe OrderProduct, type: :model do
       expect(order_product.total_price).to eq(20)
     end
   end
+
+  describe 'associations' do
+    # it { should belong_to(:order) }
+    it { should belong_to(:cart) }
+    it { should belong_to(:product) }
+  end
+  
 end

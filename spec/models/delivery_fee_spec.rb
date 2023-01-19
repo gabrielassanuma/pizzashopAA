@@ -1,9 +1,17 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe DeliveryFee, type: :model do
-#   describe 'associations ' do
-#     it {should belong_to(:order).optional}
-#   end
-# end
+RSpec.describe DeliveryFee, type: :model do
+  describe 'associations ' do
+    it {should belong_to(:order).optional}
+  end
 
-# check doc how to set up optional association
+  def optional(optional = true)
+    remove_submatcher(AssociationMatchers::RequiredMatcher)
+    add_submatcher(
+      AssociationMatchers::OptionalMatcher,
+      name,
+      optional,
+    )
+    self
+  end
+end

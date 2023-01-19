@@ -63,6 +63,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~>5.0.0'
   gem "dotenv-rails"
+  gem 'shoulda-matchers', '~> 5.0'
 
 end
 

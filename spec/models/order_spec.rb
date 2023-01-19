@@ -11,4 +11,18 @@ RSpec.describe Order, type: :model do
       expect(order.order_status).to eq('ready')
     end
   end
+
+  describe '#finalize!' do
+    it "should mark order as finalized" do 
+      order.finalize!
+      expect(order.order_status).to eq('finalized')
+    end
+  end
+
+  describe '#accept!' do
+    it "should mark order as accepted" do
+      order.accept!
+      expect(order.order_status).to eq('accepted')
+    end
+  end
 end

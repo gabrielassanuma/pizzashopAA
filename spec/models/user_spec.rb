@@ -17,15 +17,27 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # context 'when latitude and longitude are not present' do
-    #   before do
-    #     @user.latitude = nil
-    #     @user.longitude = nil
-    #   end
-    #   it 'adds an error for invalid address' do
-    #     @user.distance_from_store
-    #     expect(@user.errors[:address]).to include("Sorry, your address is invalid or can't be find by our system, contact store")
-    #   end
-    # end
+    context 'when latitude and longitude are not present' do
+      before do
+        user_outside.latitude = nil
+        user_outside.longitude = nil
+      end
+      it 'adds an error for invalid address' do
+        user_outside.distance_from_store
+        expect(user_outside.errors[:address]).to be_present
+      end
+    end
   end
+  
+  describe 'associations' do
+    it {should have_many(:orders)}
+  end
+  
+  describe 'validations' do
+    it { should validate_presence_of(:phone_number) }
+    it { should validate_length_of(:phone_number).is_equal_to(9) }
+    it { should validate_presence_of(:username) }
+    it { should validate_presence_of(:address) }
+  end
+
 end

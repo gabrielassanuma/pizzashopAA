@@ -4,5 +4,8 @@ FactoryBot.define do
     last_name { "Musk" }
     active { true }
 
+    trait :invalid do
+      first_name { "" }
+    end
   end
 end

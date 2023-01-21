@@ -13,12 +13,4 @@ class CartsController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def delivery_fee
-    # set store location
-    # compare user location / store location
-    # conditional price 
-  end
-
 end

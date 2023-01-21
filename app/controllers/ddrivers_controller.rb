@@ -1,5 +1,6 @@
 class DdriversController < ApplicationController
   before_action :set_ddriver, only: [:show, :edit, :update, :destroy, :deactive]
+  before_action :require_admin
 
   def index
     @ddrivers = Ddriver.all
@@ -49,5 +50,12 @@ class DdriversController < ApplicationController
 
     def ddriver_params
       params.require(:ddriver).permit(:first_name, :last_name)
+    end
+
+    def require_admin
+      unless current_user.admin?
+        flash[:alert] = "Acesso negado."
+        redirect_to root_path
+      end
     end
 end

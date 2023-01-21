@@ -55,7 +55,14 @@ RSpec.describe DdriversController, type: :controller do
         sign_in(create(:user))
         expect { post :create, params: { ddriver: attributes_for(:ddriver, :invalid) } }.to_not change(Ddriver, :count)
       end
+
+      it "should redirects to new template" do 
+        sign_in(create(:user))
+        post :create, params: { ddriver: attributes_for(:ddriver, :invalid) }
+        expect(response).to render_template(:new)
+      end
     end
   end
 
+  
 end

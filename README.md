@@ -38,6 +38,15 @@ Install Ruby Gems
   bundle install
 ```
 
+
+Create DB
+
+```bash
+  bin/rails db:create
+  bin/rails db:migrate
+  bin/rails db:seed
+```
+
 Start the server
 
 ```bash

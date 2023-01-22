@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     patch :finalize, on: :member
     get 'track', on: :member, as: :track
   end
-  resources :ddrivers do
+  resources :ddrivers, except: [:destroy] do
     patch :deactive , on: :member
   end
 end

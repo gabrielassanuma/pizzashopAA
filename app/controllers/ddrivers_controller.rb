@@ -54,7 +54,7 @@ class DdriversController < ApplicationController
 
     def require_admin
       unless current_user.admin?
-        flash[:alert] = "Acesso negado."
+        flash[:alert] = "You are not allowed visit this page"
         redirect_to root_path
       end
     end

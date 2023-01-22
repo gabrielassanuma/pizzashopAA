@@ -33,11 +33,6 @@ class DdriversController < ApplicationController
     end
   end
 
-  def destroy
-    @ddriver.destroy
-    redirect_to ddrivers_url, notice: 'Ddriver was successfully destroyed.'
-  end
-
   def deactive
     @ddriver.deactive!
     redirect_to ddrivers_path, notice: 'Driver was deactived'

@@ -151,7 +151,7 @@ RSpec.describe DdriversController, type: :controller do
     end
   end
 
-  describe "#deactive" do
+  describe "PATCH#deactive" do
     context "log in as admin" do
       it "should change ddriver.active to false" do
         sign_in(create(:user, :admin))

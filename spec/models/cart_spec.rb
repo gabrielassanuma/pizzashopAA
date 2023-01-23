@@ -22,5 +22,5 @@ RSpec.describe Cart, type: :model do
     it { should have_many(:order_products) }
     it { should have_many(:products) }
   end
-
 end
+

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe DdriversController, type: :controller do 
-  describe "#index" do
+  
+  describe "GET#index" do
     context "assigns all ddrivers to @ddrivers" do 
       it "if user is admin assigns all ddrivers to @ddrivers" do
         sign_in(create(:user, :admin))
@@ -20,7 +21,7 @@ RSpec.describe DdriversController, type: :controller do
     end
   end
   
-  describe "#show" do
+  describe "GET#show" do
     context "assigns ddriver to @ddriver" do 
       it "if user is admin assigns ddriver to @ddriver" do
         sign_in(create(:user, :admin))
@@ -39,9 +40,9 @@ RSpec.describe DdriversController, type: :controller do
     end 
   end
 
-  describe '#new' do
+  describe "GET#new" do
     context "assigns a new ddriver to @ddriver" do 
-      it 'if user is admin assigns a new ddriver to @ddriver' do
+      it "if user is admin assigns a new ddriver to @ddriver" do
         sign_in(create(:user, :admin))
         get :new
         expect(assigns(:ddriver)).to be_a_new(Ddriver)
@@ -56,7 +57,7 @@ RSpec.describe DdriversController, type: :controller do
     end
   end
 
-  describe '#edit' do 
+  describe "GET#edit" do 
     context "assigns the requested ddriver to @ddriver" do 
       it "if user is admin assigns the requested ddriver to @ddriver " do 
         sign_in(create(:user, :admin))
@@ -75,7 +76,7 @@ RSpec.describe DdriversController, type: :controller do
     end
   end
 
-  describe '#create' do 
+  describe "POST#create" do 
     context "with valid params and log in as admin" do 
       it "admin should create new ddriver" do
         sign_in(create(:user, :admin))
@@ -112,25 +113,25 @@ RSpec.describe DdriversController, type: :controller do
     end
   end
 
-  describe '#update' do
-    context 'with valid params and log in as admin' do
-      it 'updates the requested ddriver' do
+  describe "PUT#update" do
+    context "with valid params and log in as admin" do
+      it "updates the requested ddriver" do
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
-        put :update, params: { id: ddriver.id, ddriver: { first_name: 'new name' } }
+        put :update, params: { id: ddriver.id, ddriver: { first_name: "new name" } }
         ddriver.reload
-        expect(ddriver.first_name).to eq('new name')
+        expect(ddriver.first_name).to eq("new name")
       end
 
-      it 'redirects to the updated ddriver' do
+      it "redirects to the updated ddriver" do
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
-        put :update, params: { id: ddriver.id, ddriver: { first_name: 'new name' } }
+        put :update, params: { id: ddriver.id, ddriver: { first_name: "new name" } }
         expect(response).to redirect_to(ddriver)
       end
     end
 
-    context 'with invalid params and log in as admin' do
+    context "with invalid params and log in as admin" do
       it "should redirects to edit template" do 
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
@@ -139,11 +140,11 @@ RSpec.describe DdriversController, type: :controller do
       end
     end
 
-    context 'log in as user' do 
+    context "log in as user" do 
       it "redirects to root and displays flash message if user is not admin" do 
         sign_in(create(:user))
         ddriver = create(:ddriver)
-        put :update, params: { id: ddriver.id, ddriver: { first_name: 'new name' } }
+        put :update, params: { id: ddriver.id, ddriver: { first_name: "new name" } }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
@@ -158,6 +159,6 @@ RSpec.describe DdriversController, type: :controller do
         expect { patch :deactive, params: { id: ddriver.id } }.to change { ddriver.reload.active }.from(true).to(false)
       end
     end
-
   end
 end
+

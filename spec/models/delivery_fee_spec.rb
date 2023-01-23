@@ -4,5 +4,5 @@ RSpec.describe DeliveryFee, type: :model do
   describe 'associations ' do
     it {should have_many (:orders) }
   end
-
 end
+

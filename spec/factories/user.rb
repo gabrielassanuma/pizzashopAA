@@ -9,6 +9,7 @@ FactoryBot.define do
     password { 111111 }
 
     trait :admin do
+      phone_number { 987654321 } 
       admin { true }
     end
   end

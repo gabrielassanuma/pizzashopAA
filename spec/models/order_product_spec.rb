@@ -28,5 +28,5 @@ RSpec.describe OrderProduct, type: :model do
     )
     self
   end
-  
 end
+

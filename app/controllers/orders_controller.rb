@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :update, :edit, :ready, :finalize, :track, :accept]
+  before_action :require_admin, only: [:index]
+
   def index
     @orders = Order.all
   end
@@ -84,6 +86,13 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone, :delivery_fee )
+    end
+
+    def require_admin
+      unless current_user.admin?
+        flash[:alert] = "You are not allowed visit this page"
+        redirect_to root_path
+      end
     end
   
 end

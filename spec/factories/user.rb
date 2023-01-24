@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    phone_number { 123456789 }
+    sequence(:phone_number) { |n| "9#{n.to_s.rjust(8, '0')}" }
     additional_info { "" }
     address { "Calçada da Pampulha 27, Lisboa" }
     latitude { 38.7046306 }
@@ -9,7 +9,6 @@ FactoryBot.define do
     password { 111111 }
 
     trait :admin do
-      phone_number { 987654321 } 
       admin { true }
     end
   end

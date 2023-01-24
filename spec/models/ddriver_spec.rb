@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ddriver, type: :model do
-  let(:ddriver) { Ddriver.create!(first_name: "Elon", last_name: "Musk", active: true) }
+  let(:ddriver) { create(:ddriver) }
 
   describe '#deactive!' do 
     it "should deactive ddriver" do

@@ -33,7 +33,7 @@ RSpec.describe DdriversController, type: :controller do
       it "redirects to root and displays flash message if user is not admin" do 
         sign_in(create(:user))
         ddriver = create(:ddriver)
-        get :index
+        get :show, params: {id: ddriver.id }
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
@@ -157,6 +157,15 @@ RSpec.describe DdriversController, type: :controller do
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
         expect { patch :deactive, params: { id: ddriver.id } }.to change { ddriver.reload.active }.from(true).to(false)
+      end
+    end
+
+    context "log in as user" do
+      it "redirects to root and displays flash message if user is not admin" do
+        sign_in(create(:user))
+        ddriver = create(:ddriver)
+        expect(patch :deactive, params: { id: ddriver.id }).to redirect_to(root_path)
+        expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
     end
   end

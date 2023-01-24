@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order do
+  factory :product do
     name { "product" }
     description { "good description" } 
     price { 10 }

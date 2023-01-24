@@ -1,6 +1,5 @@
-Copy code
 FactoryBot.define do
-  factory :order do
+  factory :order_product do
     association :product
     association :ddriver
     association :cart

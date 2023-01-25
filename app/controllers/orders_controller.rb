@@ -13,13 +13,13 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     distance = Geocoder::Calculations.distance_between([current_user.latitude, current_user.longitude], [38.7246365, -9.1509999])
-    if distance < 3
+    if distance < 3 
       @delivery_fee = DeliveryFee.find(1)
-    elsif distance < 5
+    elsif distance >= 3 && distance < 5
       @delivery_fee = DeliveryFee.find(2)
-    elsif distance < 10
+    elsif distance >=5 && distance < 10
       @delivery_fee = DeliveryFee.find(3)
-    elsif distance > 10 && distance < 20
+    elsif distance >= 10 && distance < 20
       @delivery_fee = DeliveryFee.find(4)
     end
   end

@@ -1,11 +1,7 @@
 FactoryBot.define do
   factory :delivery_fee do
-    id { 1 }
-    zone { "A" }
-    price { 1 }
-
-    trait :invalid do
-      price { "" }
-    end
+    sequence(:id) { |n| n }
+    sequence(:zone) { |n| %w[A B C D][n] }
+    sequence(:price) { |n| [1, 1.5, 2, 3][n] }
   end
 end

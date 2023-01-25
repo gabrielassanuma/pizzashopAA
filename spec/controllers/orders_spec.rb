@@ -73,4 +73,13 @@ RSpec.describe OrdersController, type: :controller do
       end
     end
   end
+
+  describe "POST#create" do
+    it "should create new order" do
+      sign_in(create(:user))
+      expect { post :create, params: { order: attributes_for(:order).merge(user_id: create(:user).id, ddriver_id: create(:ddriver).id, delivery_fee_id: create(:delivery_fee).id) } }.to change(Order, :count).by(1)
+    end
+  end
+
+
 end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order do
     association :user 
-    total_price {  }
+    total_price { "" }
     order_status { "new_order" }
     association :ddriver
     take_away_name { "" }

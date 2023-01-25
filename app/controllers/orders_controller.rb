@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :edit, :ready, :finalize, :track, :accept]
+  before_action :set_order, only: [:show, :update, :ready, :finalize, :track, :accept]
   before_action :require_admin, only: [:index]
 
   def index
@@ -24,8 +24,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-  end
 
   def create
     @order = Order.new(order_params)
@@ -85,7 +83,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone, :delivery_fee )
+      params.require(:order).permit(:user_id, :total_price, :order_status, :ddriver_id, :take_away_name, :take_away_phone, :delivery_fee_id )
     end
 
     def require_admin

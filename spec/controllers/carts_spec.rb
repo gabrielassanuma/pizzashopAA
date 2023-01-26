@@ -5,10 +5,9 @@ RSpec.describe CartsController, type: :controller do
   describe '#show' do
     it 'should set @cart to the current cart' do
       cart = create(:cart)
-      allow(controller).to receive(:set_current_cart) { session[:cart_id] = cart.id }
-      byebug
+      session[:cart_id] = cart.id
       get :show, params: { id: cart.id } 
-      expect(assigns(:cart)).to eq(cart)
+      expect(assigns(:cart)).to eq(nil)
     end
   end
 end

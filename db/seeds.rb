@@ -113,3 +113,9 @@ puts "Creating Ddrivers - waiting for 4"
 end
 puts "Ddrivers created"
 puts "--------------------------------------------------"
+
+puts "--------------------------------------------------"
+puts "Creating cart"
+cart = Cart.new
+cart.save!
+puts "Cart created"

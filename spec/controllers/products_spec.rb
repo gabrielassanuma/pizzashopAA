@@ -58,6 +58,25 @@ RSpec.describe ProductsController, type: :controller do
     end
   end
 
+  describe "GET#edit" do
+    context "assigns the requested product to @product" do
+      it "if user is admin assigns the requested product to @product" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        get :edit, params: { id: product.id }
+        expect(assigns(:product)).to eq(product)
+      end
+
+      it "redirects to root and displays flash message if user is not admin" do
+        sign_in(create(:user))
+        product = create(:product)
+        get :edit, params: { id: product.id }
+        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to eq("You are not allowed visit this page")
+      end
+    end
+  end
+
   describe "POST#create" do 
     context "with valid params and log in as admin" do
       it "should create new product" do
@@ -91,6 +110,25 @@ RSpec.describe ProductsController, type: :controller do
         sign_in(create(:user, :admin))
         post :create, params: { product: attributes_for(:product, :invalid) }
         expect(response).to render_template(:new)
+      end
+    end
+  end
+
+  describe "PUT#update" do
+    context "with valid params and log in as admin" do
+      it "should update the request product" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        put :update, params: { id: product.id, product: {name: "new_name"} }
+        product.reload
+        expect(product.name).to eq("new_name")
+      end
+
+      it "should redirect to new product" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        put :update, params: { id: product.id, product: {name: "new_name"} }
+        expect(response).to redirect_to(Product.last)
       end
     end
   end

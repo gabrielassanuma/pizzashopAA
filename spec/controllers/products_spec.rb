@@ -131,6 +131,31 @@ RSpec.describe ProductsController, type: :controller do
         expect(response).to redirect_to(Product.last)
       end
     end
+ 
+
+    context "with invalid params and log in as admin" do
+      it "should redirect to edit template" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        put :update, params: { id: product.id, product: attributes_for(:product, :invalid) }
+        expect(response).to render_template(:edit)
+      end
+
+      it "doesn't create a product on DB" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        expect { put :update, params: { id: product.id, product: attributes_for(:product, :invalid) } }.to_not change(Product, :count)
+      end
+    end
   end
 
+  describe "PUT#deactive" do
+    context "log in as admin" do
+      it "should change product.active to false" do
+        sign_in(create(:user, :admin))
+        product = create(:product)
+        expect { patch :deactive, params: { id: product.id } }.to change { product.reload.active }.from(true).to(false)
+      end
+    end
+  end
 end

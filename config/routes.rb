@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'order_products/:id', to: "order_products#show", as: "order_product"
   delete 'order_products/:id', to: "order_products#destroy"
   resources :delivery_fees , only: [:index, :edit, :update]
-  resources :products do
+  resources :products, except: [:destroy] do
     patch :deactive, on: :member
   end
   resources :orders, only: [:index, :create, :new, :show, :update] do

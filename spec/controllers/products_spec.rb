@@ -157,5 +157,14 @@ RSpec.describe ProductsController, type: :controller do
         expect { patch :deactive, params: { id: product.id } }.to change { product.reload.active }.from(true).to(false)
       end
     end
+
+    context "log in as user" do
+      it "redirects to root and displays flash message if user is not admin" do
+        sign_in(create(:user))
+        product = create(:product)
+        expect(patch :deactive, params: { id: product.id }).to redirect_to(root_path)
+        expect(flash[:alert]).to eq("You are not allowed visit this page")
+      end
+    end
   end
 end

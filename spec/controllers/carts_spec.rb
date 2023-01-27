@@ -7,7 +7,7 @@ RSpec.describe CartsController, type: :controller do
       set_current_cart = create(:cart)
       allow(controller).to receive(:set_current_cart)
       get :show, params: { id: set_current_cart.id } 
-      expect(assigns(:current_cart)).to eq(nil)
+      expect(assigns(:cart)).to eq(set_current_cart)
     end
   end
 end

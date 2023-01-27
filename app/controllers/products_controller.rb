@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_admin
+  before_action :require_admin
   before_action :set_product, only: [:show, :edit, :update, :destroy, :deactive]
 
   def index
@@ -54,7 +54,10 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :description, :price )
     end
 
-    def check_admin
-      redirect_to root_path, alert: "You do not have permission to perform this action." unless current_user.admin?
+    def require_admin
+      unless current_user.admin?
+        flash[:alert] = "You are not allowed visit this page"
+        redirect_to root_path
+      end
     end
 end

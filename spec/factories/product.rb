@@ -7,6 +7,7 @@ FactoryBot.define do
     active { true } 
 
     trait :invalid do
+      name { "" }
     end
   end
 end

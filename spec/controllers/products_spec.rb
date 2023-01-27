@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe ProductsController, type: :controller do
 

@@ -13,6 +13,9 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
   end
+  
+  def edit
+  end
 
   def create
     @product = Product.new(product_params)
@@ -21,9 +24,6 @@ class ProductsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
@@ -51,7 +51,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :price )
+      params.require(:product).permit(:name, :description, :price, :subclass, :active )
     end
 
     def require_admin

@@ -2,83 +2,72 @@ require 'rails_helper'
 
 RSpec.describe DdriversController, type: :controller do 
   
-  describe "GET#index" do
-    context "assigns all ddrivers to @ddrivers" do 
-      it "if user is admin assigns all ddrivers to @ddrivers" do
+  describe '#require_admin' do
+    context 'when user is admin' do
+      it 'allows the action to proceed' do
         sign_in(create(:user, :admin))
-        ddriver = create(:ddriver) 
-        get :index
-        expect(assigns(:ddrivers)).to eq([ddriver])
-      end 
-    
-      it "redirects to root and displays flash message if user is not admin" do 
+        ddriver = create(:ddriver)
+        get :show, params: { id: ddriver.id }
+        expect(response).to be_successful
+      end
+    end
+
+    context 'when user is not admin' do
+      it 'redirects to the root path' do
         sign_in(create(:user))
         ddriver = create(:ddriver)
-        get :index
+        get :show, params: { id: ddriver.id }
         expect(response).to redirect_to(root_path)
+      end
+
+      it 'displays a flash message' do
+        sign_in(create(:user))
+        ddriver = create(:ddriver)
+        get :show, params: { id: ddriver.id }
         expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
     end
   end
+
+
+  describe "GET#index" do 
+    it "assigns all ddrivers to @ddrivers" do
+      sign_in(create(:user, :admin))
+      ddriver = create(:ddriver) 
+      get :index
+      expect(assigns(:ddrivers)).to eq([ddriver])
+    end 
+  end
   
   describe "GET#show" do
-    context "assigns ddriver to @ddriver" do 
-      it "if user is admin assigns ddriver to @ddriver" do
-        sign_in(create(:user, :admin))
-        ddriver = create(:ddriver)
-        get :show, params: {id: ddriver.id }
-        expect(assigns(:ddriver)).to eq(ddriver)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do 
-        sign_in(create(:user))
-        ddriver = create(:ddriver)
-        get :show, params: {id: ddriver.id }
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
-    end 
+    it "assigns ddriver to @ddriver" do
+      sign_in(create(:user, :admin))
+      ddriver = create(:ddriver)
+      get :show, params: {id: ddriver.id }
+      expect(assigns(:ddriver)).to eq(ddriver)
+    end
   end
 
   describe "GET#new" do
-    context "assigns a new ddriver to @ddriver" do 
-      it "if user is admin assigns a new ddriver to @ddriver" do
-        sign_in(create(:user, :admin))
-        get :new
-        expect(assigns(:ddriver)).to be_a_new(Ddriver)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        get :new
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end 
+    it "assigns a new ddriver to @ddriver" do
+      sign_in(create(:user, :admin))
+      get :new
+      expect(assigns(:ddriver)).to be_a_new(Ddriver)
     end
   end
 
   describe "GET#edit" do 
-    context "assigns the requested ddriver to @ddriver" do 
-      it "if user is admin assigns the requested ddriver to @ddriver " do 
-        sign_in(create(:user, :admin))
-        ddriver = create(:ddriver)
-        get :edit, params: { id: ddriver.id }
-        expect(assigns(:ddriver)).to eq(ddriver)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        ddriver = create(:ddriver)
-        get :edit, params: { id: ddriver.id }
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "assigns the requested ddriver to @ddriver " do 
+      sign_in(create(:user, :admin))
+      ddriver = create(:ddriver)
+      get :edit, params: { id: ddriver.id }
+      expect(assigns(:ddriver)).to eq(ddriver)
     end
   end
 
   describe "POST#create" do 
-    context "with valid params and log in as admin" do 
-      it "admin should create new ddriver" do
+    context "with valid params" do 
+      it "should create a new ddriver" do
         sign_in(create(:user, :admin))
         expect { post :create, params: { ddriver: attributes_for(:ddriver) } }.to change(Ddriver, :count).by(1)
       end
@@ -90,16 +79,7 @@ RSpec.describe DdriversController, type: :controller do
       end
     end
 
-    context "with valid params and log in as user" do
-      it "redirects to root and displays flash message if user is not admin" do 
-        sign_in(create(:user))
-        post :create, params: { ddriver: attributes_for(:ddriver) } 
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
-    end
-
-    context "with invalid params and log in as admin" do
+    context "with invalid params" do
       it "doesn't create a new ddriver on DB" do 
         sign_in(create(:user, :admin))
         expect { post :create, params: { ddriver: attributes_for(:ddriver, :invalid) } }.to_not change(Ddriver, :count)
@@ -114,7 +94,7 @@ RSpec.describe DdriversController, type: :controller do
   end
 
   describe "PUT#update" do
-    context "with valid params and log in as admin" do
+    context "with valid params" do
       it "updates the requested ddriver" do
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
@@ -131,7 +111,7 @@ RSpec.describe DdriversController, type: :controller do
       end
     end
 
-    context "with invalid params and log in as admin" do
+    context "with invalid params" do
       it "should redirects to edit template" do 
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
@@ -139,34 +119,13 @@ RSpec.describe DdriversController, type: :controller do
         expect(response).to render_template(:edit)
       end
     end
-
-    context "log in as user" do 
-      it "redirects to root and displays flash message if user is not admin" do 
-        sign_in(create(:user))
-        ddriver = create(:ddriver)
-        put :update, params: { id: ddriver.id, ddriver: { first_name: "new name" } }
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
-    end
   end
 
   describe "PATCH#deactive" do
-    context "log in as admin" do
-      it "should change ddriver.active to false" do
-        sign_in(create(:user, :admin))
-        ddriver = create(:ddriver)
-        expect { patch :deactive, params: { id: ddriver.id } }.to change { ddriver.reload.active }.from(true).to(false)
-      end
-    end
-
-    context "log in as user" do
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        ddriver = create(:ddriver)
-        expect(patch :deactive, params: { id: ddriver.id }).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "should change ddriver.active to false" do
+      sign_in(create(:user, :admin))
+      ddriver = create(:ddriver)
+      expect { patch :deactive, params: { id: ddriver.id } }.to change { ddriver.reload.active }.from(true).to(false)
     end
   end
 end

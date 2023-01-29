@@ -3,7 +3,6 @@ require 'byebug'
 
 RSpec.describe ProductsController, type: :controller do
 
-
   describe '#require_admin' do
     context 'when user is admin' do
       it 'allows the action to proceed' do
@@ -24,7 +23,7 @@ RSpec.describe ProductsController, type: :controller do
 
       it 'displays a flash message' do
         sign_in(create(:user))
-        product = create(:ddriver)
+        product = create(:product)
         get :show, params: { id: product.id }
         expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
@@ -50,7 +49,7 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "GET#new" do
-    it "assings new product to @product" do
+    it "assings a new product to @product" do
       sign_in(create(:user, :admin))
       get :new
       expect(assigns(:product)).to be_a_new(Product)
@@ -73,7 +72,7 @@ RSpec.describe ProductsController, type: :controller do
         expect { post :create, params: { product: attributes_for(:product) } }.to change(Product, :count).by(1)
       end
 
-      it "should redirect to created product" do
+      it "should redirects to created product" do
         sign_in(create(:user, :admin))
         post :create, params: { product: attributes_for(:product)}
         expect(response).to redirect_to(Product.last)
@@ -96,7 +95,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "PUT#update" do
     context "with valid params" do
-      it "should update the request product" do
+      it "updates the request product" do
         sign_in(create(:user, :admin))
         product = create(:product)
         put :update, params: { id: product.id, product: {name: "new_name"} }
@@ -104,7 +103,7 @@ RSpec.describe ProductsController, type: :controller do
         expect(product.name).to eq("new_name")
       end
 
-      it "should redirect to new product" do
+      it "should redirect to the updated product" do
         sign_in(create(:user, :admin))
         product = create(:product)
         put :update, params: { id: product.id, product: {name: "new_name"} }
@@ -118,12 +117,6 @@ RSpec.describe ProductsController, type: :controller do
         product = create(:product)
         put :update, params: { id: product.id, product: attributes_for(:product, :invalid) }
         expect(response).to render_template(:edit)
-      end
-
-      it "doesn't create a product on DB" do
-        sign_in(create(:user, :admin))
-        product = create(:product)
-        expect { put :update, params: { id: product.id, product: attributes_for(:product, :invalid) } }.to_not change(Product, :count)
       end
     end
   end

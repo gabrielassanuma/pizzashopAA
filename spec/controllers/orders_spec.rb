@@ -75,20 +75,45 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "POST#create" do
-    context "when order is succesfully created " do 
-      it "should create new order" do
-        sign_in(create(:user))
-        expect { post :create, params: { order: attributes_for(:order).merge(user_id: create(:user).id, ddriver_id: create(:ddriver).id, delivery_fee_id: create(:delivery_fee).id) } }.to change(Order, :count).by(1)
+    let(:order_params) { { name: "John Doe", address: "123 Main St", email: "johndoe@example.com" } }
+    let(:cart) { create(:cart) }
+    let(:order_product) { create(:order_product, cart: cart) }
+
+
+    it "creates a new order and assigns it to the current cart's order products" do
+      post :create, params: { order: order_params }
+
+      expect(Order.count).to eq(1)
+      expect(order_product.reload.order_id).to eq(Order.first.id)
+      expect(order_product.reload.cart_id).to be_nil
+    end
+
+    it "destroys the current cart and sets the session cart_id to nil" do
+      post :create, params: { order: order_params }
+
+      expect(cart).to have_received(:destroy)
+      expect(session[:cart_id]).to be_nil
+    end
+
+    it "redirects to the track order path with a notice" do
+      post :create, params: { order: order_params }
+
+      expect(response).to redirect_to(track_order_path(Order.first))
+      expect(flash[:notice]).to eq("Order was successfully created.")
+    end
+
+    context "when the order is not valid" do
+      before do
+        allow_any_instance_of(Order).to receive(:save).and_return(false)
       end
 
-      # it "updates the order_id and cart_id of each item in the cart" do
-      #   create(:cart)
-      #   create(:order_product)
-      #   post :create, params: { order: attributes_for(:order).merge(user_id: create(:user).id, ddriver_id: create(:ddriver).id, delivery_fee_id: create(:delivery_fee).id) } 
-      #   expect(order_product.order_id).to eq(order_id)
-      # end
+      it "renders the new template with a unprocessable_entity status" do
+        post :create, params: { order: order_params }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to render_template(:new)
+      end
     end
   end
-
 
 end

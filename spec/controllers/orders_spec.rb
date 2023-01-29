@@ -34,7 +34,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET#new" do
     context "assigns a new order to @order and set delivery_fee" do 
-      it "when user is located less than 3km from store" do
+      it "when user is located less than 3km from store should assigns zone A" do
         sign_in(create(:user))
         create(:delivery_fee, id: 1)
         get :new
@@ -42,7 +42,7 @@ RSpec.describe OrdersController, type: :controller do
         expect(assigns(:order)).to be_a_new(Order)
       end
 
-      it "when user is located more than 3km and less than 5km from store" do
+      it "when user is located more than 3km and less than 5km from store should assigns zone B" do
         user = create(:user)
         user.update(address: "Rua do Ginjal 69, Almada", latitude: 38.6850637, longitude: -9.1573493)
         sign_in(user)
@@ -52,7 +52,7 @@ RSpec.describe OrdersController, type: :controller do
         expect(assigns(:order)).to be_a_new(Order)
       end
 
-      it "when user is located more than 5km and less than 10km from store" do
+      it "when user is located more than 5km and less than 10km from store should assigns zone C" do
         user = create(:user)
         user.update(address: "Estrada Da Outurela 42, 2790-113 Carnaxide, Lisbon", latitude: 38.7239215, longitude: -9.2298727)
         sign_in(user)
@@ -62,7 +62,7 @@ RSpec.describe OrdersController, type: :controller do
         expect(assigns(:order)).to be_a_new(Order)
       end
 
-      it "when user is located more than 10km from store" do
+      it "when user is located more than 10km from store should assigns zone D" do
         user = create(:user)
         user.update(address: "Rua Bulhão Pato 2, Lisboa", latitude: 38.7054925, longitude: -9.3050684)
         sign_in(user)

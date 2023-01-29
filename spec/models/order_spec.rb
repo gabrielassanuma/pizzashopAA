@@ -27,7 +27,7 @@ RSpec.describe Order, type: :model do
   describe 'associations' do 
     it { should belong_to(:user) }
     it { should have_many(:order_products) }
-    it { should belong_to(:ddriver) }
+    it { should belong_to(:ddriver).optional }
     it { should belong_to(:delivery_fee) }
 
   end

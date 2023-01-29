@@ -3,82 +3,71 @@ require 'byebug'
 
 RSpec.describe ProductsController, type: :controller do
 
-  describe "GET#index" do
-    context "assigns all products to @products" do 
-      it "if user is admin assigns all products to @products" do
+
+  describe '#require_admin' do
+    context 'when user is admin' do
+      it 'allows the action to proceed' do
         sign_in(create(:user, :admin))
         product = create(:product)
-        get :index
-        expect(assigns(:products)).to eq([product])
+        get :show, params: { id: product.id }
+        expect(response).to be_successful
       end
+    end
 
-      it "redirects to root and displays flash message if user is not admin" do
+    context 'when user is not admin' do
+      it 'redirects to the root path' do
         sign_in(create(:user))
         product = create(:product)
-        get :index
+        get :show, params: { id: product.id }
         expect(response).to redirect_to(root_path)
+      end
+
+      it 'displays a flash message' do
+        sign_in(create(:user))
+        product = create(:ddriver)
+        get :show, params: { id: product.id }
         expect(flash[:alert]).to eq("You are not allowed visit this page")
       end
+    end
+  end
+
+  describe "GET#index" do
+    it "assigns all products to @products" do
+      sign_in(create(:user, :admin))
+      product = create(:product)
+      get :index
+      expect(assigns(:products)).to eq([product])
     end
   end
 
   describe "GET#show" do
-    context "assign product to @product" do
-      it "if user is admin assign product to @product" do
-        sign_in(create(:user, :admin))
-        product = create(:product)
-        get :show, params: { id: product.id}
-        expect(assigns(:product)).to eq(product)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        product = create(:product)
-        get :show, params: { id: product.id}
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "assigns product to @product" do
+      sign_in(create(:user, :admin))
+      product = create(:product)
+      get :show, params: { id: product.id}
+      expect(assigns(:product)).to eq(product)
     end
   end
 
   describe "GET#new" do
-    context "assigns new product to @product" do 
-      it "if user is admin assing new product to @product" do
-        sign_in(create(:user, :admin))
-        get :new
-        expect(assigns(:product)).to be_a_new(Product)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        get :new
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "assings new product to @product" do
+      sign_in(create(:user, :admin))
+      get :new
+      expect(assigns(:product)).to be_a_new(Product)
     end
   end
 
   describe "GET#edit" do
-    context "assigns the requested product to @product" do
-      it "if user is admin assigns the requested product to @product" do
-        sign_in(create(:user, :admin))
-        product = create(:product)
-        get :edit, params: { id: product.id }
-        expect(assigns(:product)).to eq(product)
-      end
-
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        product = create(:product)
-        get :edit, params: { id: product.id }
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "assigns the requested product to @product" do
+      sign_in(create(:user, :admin))
+      product = create(:product)
+      get :edit, params: { id: product.id }
+      expect(assigns(:product)).to eq(product)
     end
   end
 
   describe "POST#create" do 
-    context "with valid params and log in as admin" do
+    context "with valid params" do
       it "should create new product" do
         sign_in(create(:user, :admin))
         expect { post :create, params: { product: attributes_for(:product) } }.to change(Product, :count).by(1)
@@ -91,16 +80,7 @@ RSpec.describe ProductsController, type: :controller do
       end
     end
 
-    context "with valid params and log in as user" do
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        post :create, params: { product: attributes_for(:product) }
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
-    end
-
-    context "with invalid params and log in as admin" do
+    context "with invalid params" do
       it "doesn't create a new product on DB" do
         sign_in(create(:user, :admin))
         expect { post :create, params: { product: attributes_for(:product, :invalid) } }.to_not change(Product, :count)
@@ -115,7 +95,7 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "PUT#update" do
-    context "with valid params and log in as admin" do
+    context "with valid params" do
       it "should update the request product" do
         sign_in(create(:user, :admin))
         product = create(:product)
@@ -131,9 +111,8 @@ RSpec.describe ProductsController, type: :controller do
         expect(response).to redirect_to(Product.last)
       end
     end
- 
 
-    context "with invalid params and log in as admin" do
+    context "with invalid params" do
       it "should redirect to edit template" do
         sign_in(create(:user, :admin))
         product = create(:product)
@@ -150,21 +129,10 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "PUT#deactive" do
-    context "log in as admin" do
-      it "should change product.active to false" do
-        sign_in(create(:user, :admin))
-        product = create(:product)
-        expect { patch :deactive, params: { id: product.id } }.to change { product.reload.active }.from(true).to(false)
-      end
-    end
-
-    context "log in as user" do
-      it "redirects to root and displays flash message if user is not admin" do
-        sign_in(create(:user))
-        product = create(:product)
-        expect(patch :deactive, params: { id: product.id }).to redirect_to(root_path)
-        expect(flash[:alert]).to eq("You are not allowed visit this page")
-      end
+    it "should change product.active to false" do
+      sign_in(create(:user, :admin))
+      product = create(:product)
+      expect { patch :deactive, params: { id: product.id } }.to change { product.reload.active }.from(true).to(false)
     end
   end
 end

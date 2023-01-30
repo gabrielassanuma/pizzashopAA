@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe DdriversController, type: :controller do 
   
-  describe '#require_admin' do
-    context 'when user is admin' do
-      it 'allows the action to proceed' do
+  describe "#require_admin" do
+    context "when user is admin" do
+      it "allows the action to proceed" do
         sign_in(create(:user, :admin))
         ddriver = create(:ddriver)
         get :show, params: { id: ddriver.id }
@@ -12,15 +12,15 @@ RSpec.describe DdriversController, type: :controller do
       end
     end
 
-    context 'when user is not admin' do
-      it 'redirects to the root path' do
+    context "when user is not admin" do
+      it "redirects to the root path" do
         sign_in(create(:user))
         ddriver = create(:ddriver)
         get :show, params: { id: ddriver.id }
         expect(response).to redirect_to(root_path)
       end
 
-      it 'displays a flash message' do
+      it "displays a flash message" do
         sign_in(create(:user))
         ddriver = create(:ddriver)
         get :show, params: { id: ddriver.id }

@@ -66,7 +66,7 @@ RSpec.describe DeliveryFeesController, type: :controller do
       it "should redirects to edit template" do 
         sign_in(create(:user, :admin))
         delivery_fee = create(:delivery_fee, id:1 )
-        put :update, params: { id: delivery_fee.id, delivery_fee: { price: "" } }
+        put :update, params: { id: delivery_fee.id, delivery_fee: attributes_for(:delivery_fee, :invalid) }
         expect(response).to render_template(:edit)
       end
     end

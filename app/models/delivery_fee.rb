@@ -8,6 +8,5 @@
 
 class DeliveryFee < ApplicationRecord
   has_many :orders
-  validates :zone, presence: true
-  validates :price, presence: true
+
 end

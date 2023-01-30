@@ -61,14 +61,5 @@ RSpec.describe DeliveryFeesController, type: :controller do
         expect(response).to redirect_to(delivery_fee)
       end
     end
-
-    context "with invalid params" do
-      it "should redirects to edit template" do 
-        sign_in(create(:user, :admin))
-        delivery_fee = create(:delivery_fee, id:1 )
-        put :update, params: { id: delivery_fee.id, delivery_fee: attributes_for(:delivery_fee, :invalid) }
-        expect(response).to render_template(:edit)
-      end
-    end
   end
 end

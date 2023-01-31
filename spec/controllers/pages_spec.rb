@@ -47,4 +47,22 @@ RSpec.describe PagesController, type: :controller do
       expect(assigns(:desserts)).to eq([dessert])
     end
   end
+
+  describe "GET#kitchen" do   
+    it "should set all orders to @orders" do
+      sign_in(create(:user, :admin))
+      order = create(:order)
+      get :kitchen
+      expect(assigns(:orders)).to eq([order])
+    end
+  end
+
+  describe "GET#front_store" do   
+    it "should set all orders to @orders" do
+      sign_in(create(:user, :admin))
+      order = create(:order)
+      get :front_store
+      expect(assigns(:orders)).to eq([order])
+    end
+  end
 end

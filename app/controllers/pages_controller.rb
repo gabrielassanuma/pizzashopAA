@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
+  before_action :set_orders, only: [:kitchen, :front_store]
  
   def home
     @user = current_user
@@ -25,11 +26,15 @@ class PagesController < ApplicationController
   end
 
   def kitchen
-    @orders = Order.all
   end
 
   def front_store
-    @orders = Order.all
   end
+
+  private
+
+    def set_orders
+      @orders = Order.all
+    end
 
 end

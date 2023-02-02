@@ -25,8 +25,10 @@ RSpec.describe "Customers", type: :system do
       create(:product, subclass: "pizza")
       visit pizzas_path
       click_button "Add to cart"
-      expect(flash[:alert]).to eq("Product was successfully added to Cart.")
+      expect(page).to have_content("Product was successfully added to Cart.")
     end
+
+  
   end
 
   

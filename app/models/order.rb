@@ -18,7 +18,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_products
   belongs_to :ddriver, optional: true
-  belongs_to :delivery_fee
+  belongs_to :delivery_fee, optional: true
 
 
 

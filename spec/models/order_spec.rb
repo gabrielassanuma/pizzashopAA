@@ -28,7 +28,7 @@ RSpec.describe Order, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:order_products) }
     it { should belong_to(:ddriver).optional }
-    it { should belong_to(:delivery_fee) }
+    it { should belong_to(:delivery_fee).optional }
 
   end
 end

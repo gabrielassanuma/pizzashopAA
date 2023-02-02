@@ -28,7 +28,13 @@ RSpec.describe "Customers", type: :system do
       expect(page).to have_content("Product was successfully added to Cart.")
     end
 
-  
+    it "should show added product on cart show" do
+      login_as(create(:user))
+      create(:product, subclass: "pizza")
+      visit 
+    end
+
+
   end
 
   

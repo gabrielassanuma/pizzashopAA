@@ -31,7 +31,9 @@ RSpec.describe "Customers", type: :system do
     it "should show added product on cart show" do
       login_as(create(:user))
       create(:product, subclass: "pizza")
-      visit 
+      visit pizzas_path
+      click_link 
+      save_and_open_page
     end
 
 

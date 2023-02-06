@@ -31,8 +31,10 @@ RSpec.describe "Customers", type: :system do
     it "should show added product on cart show" do
       login_as(create(:user))
       create(:product, subclass: "pizza")
-      visit pizzas_path
-      click_link 
+      cart = create(:cart)
+      session[:cart_id] = cart.id
+      allow(Cart).to receive(:find_by).and_return(cart)
+      click_link "Cart", href: "/cart/#{cart.id}"
       save_and_open_page
     end
 

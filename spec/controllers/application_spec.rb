@@ -8,7 +8,6 @@ RSpec.describe ApplicationController, type: :controller do
       session[:cart_id] = cart.id
       allow(Cart).to receive(:find_by).and_return(cart)
       controller.send(:set_current_cart)
-      byebug
       expect(assigns(:current_cart)).to eq(cart)
     end
 

@@ -18,7 +18,7 @@
       <h2>Products: </h2>
     </div>
     <ul>
-      <% sorted_order_products = order.order_products.sort_by { |op| op.id } %>
+      <% sorted_order_products = order.order_products.sort_by { | op | op.id } %>
       <% sorted_order_products.each do | product | %>
       <div>
         <h3><%= product.product.name %> / Quantity:  <%= product.quantity %></h3>

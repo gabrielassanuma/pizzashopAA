@@ -32,10 +32,8 @@ RSpec.describe "Customers", type: :system do
       login_as(create(:user))
       create(:product, subclass: "pizza")
       cart = create(:cart)
-      session[:cart_id] = cart.id
-      allow(Cart).to receive(:find_by).and_return(cart)
-      click_link "Cart", href: "/cart/#{cart.id}"
       save_and_open_page
+      click_link "Cart", href: "/cart/#{cart.id}"
     end
 
 

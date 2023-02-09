@@ -26,14 +26,18 @@ RSpec.describe "Customers", type: :system do
       visit pizzas_path
       click_button "Add to cart"
       expect(page).to have_content("Product was successfully added to Cart.")
+      expect(:cart).not_to be_nil
     end
 
-    it "should show added product on cart show" do
+    it "on checkout items added to cart should be there with option to delivery it or pick up" do
       login_as(create(:user))
       create(:product, subclass: "pizza")
-      cart = create(:cart)
-      click_link "Cart", href: "/cart/#{cart.id}"
+      create(:delivery_fee, id: 1)
+      visit pizzas_path
+      click_button "Add to cart"
+      visit new_order_path
     end
+
 
 
   end

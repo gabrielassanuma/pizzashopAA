@@ -68,14 +68,5 @@ DB SCHEMA:
 <img width="919" alt="image" src="https://user-images.githubusercontent.com/104199523/213273775-e1bc89fc-3019-45ca-b65c-64e103deaf63.png">
 
 
-Customer side - User flow: 
-
-<img width="774" alt="image" src="https://user-images.githubusercontent.com/104199523/211554157-dba62827-c5a3-453c-832d-50b89d805f29.png">
-
-
-Store side - User flow:
-
-<img width="910" alt="image" src="https://user-images.githubusercontent.com/104199523/211554267-be18cbd4-1409-49a4-b5c2-f562d5895c4b.png">
-
 
 
